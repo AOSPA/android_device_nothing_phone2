@@ -58,6 +58,10 @@ function blob_fixup() {
         vendor/bin/hw/android.hardware.security.keymint-service-qti)
             grep -q "android.hardware.security.rkp-V3-ndk.so" "${2}" || ${PATCHELF} --add-needed "android.hardware.security.rkp-V3-ndk.so" "${2}"
             ;;
+        system/lib64/libultrahdr.so)
+            ${PATCHELF} --replace-needed "libjpegdecoder.so" "libjpegdecoder_stock.so" "${2}"
+            ${PATCHELF} --replace-needed "libjpegencoder.so" "libjpegencoder_stock.so" "${2}"
+            ;;
     esac
 }
 
