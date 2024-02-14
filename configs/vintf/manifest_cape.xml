@@ -28,20 +28,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>android.hardware.media.omx</name>
-        <transport>hwbinder</transport>
-        <impl level="generic"></impl>
-        <version>1.0</version>
-        <interface>
-            <name>IOmx</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IOmxStore</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <!-- DSP Service -->
     <hal format="hidl">
         <name>vendor.qti.hardware.dsp</name>
@@ -692,4 +678,17 @@
             <instance>MwqemAdapter</instance>
         </interface>
     </hal>
+    <!-- Codec2 HAl service -->
+    <hal format="hidl">
+        <name>android.hardware.media.c2</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IComponentStore</name>
+            <instance>default2</instance>
+            <instance>default9</instance>
+            <instance>default</instance>
+            <instance>software</instance>
+        </interface>
+   </hal>
 </manifest>
