@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2f69bd6_1a5ab4c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2024-02-23T05:15:51Z",
+      "side": 1,
+      "message": "that\u0027s the wrong array you are modifying, it should be in config_autoBrightnessDisplayValuesNits\n\nfix the broken indentation.",
+      "revId": "25cc0cae8014b352bde0dc19f3572434b7ce9cbd",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ],
   "submitRequirementResults": []
 }
