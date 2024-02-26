@@ -9,36 +9,79 @@
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool name="config_automatic_brightness_available">true</bool>
 
-    <!-- Array of light sensor lux values to define our levels for auto backlight brightness support.
-         The N entries of this array define N + 1 control points as follows:
-         (1-based arrays)
-
-         Point 1:            (0, value[1]):             lux <= 0
-         Point 2:     (level[1], value[2]):  0        < lux <= level[1]
-         Point 3:     (level[2], value[3]):  level[2] < lux <= level[3]
+    <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
+      The N entries of this array define N  1 zones as follows:
+         Zone 0:        0 <= LUX < array[0]
+         Zone 1:        array[0] <= LUX < array[1]
          ...
-         Point N+1: (level[N], value[N+1]):  level[N] < lux
-
-         The control points must be strictly increasing.  Each control point
-         corresponds to an entry in the brightness backlight values arrays.
-         For example, if lux == level[1] (first element of the levels array)
-         then the brightness will be determined by value[2] (second element
-         of the brightness values array).
-
-         Spline interpolation is used to determine the auto-brightness
-         backlight values for lux levels between these control points.
-
+         Zone N:        array[N - 1] <= LUX < array[N]
+         Zone N + 1     array[N] <= LUX < infinity
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>8</item>
+        <item>12</item>
+        <item>15</item>
+        <item>20</item>
+        <item>33</item>
+        <item>55</item>
+        <item>90</item>
+        <item>148</item>
+        <item>245</item>
+        <item>403</item>
+        <item>665</item>
+        <item>1097</item>
+        <item>1808</item>
+        <item>3000</item>
+        <item>6000</item>
+        <item>9000</item>
+        <item>10000</item>
+        <item>14000</item>
+        <item>20000</item>
     </integer-array>
 
-    <!-- Array of output values for LCD backlight corresponding to the lux values
-         in the config_autoBrightnessLevels array.  This array should have size one greater
-         than the size of the config_autoBrightnessLevels array.
-         The brightness values must be between 0 and 255 and be non-decreasing.
-         This must be overridden in platform specific overlays -->
-    <integer-array name="config_autoBrightnessLcdBacklightValues">
-    </integer-array>
+    <!-- Array of desired screen brightness in nits corresponding to the lux values
+      in the config_autoBrightnessLevels array. As with config_screenBrightnessMinimumNits and
+      config_screenBrightnessMaximumNits, the display brightness is defined as the measured
+      brightness of an all-white image.
+
+      If this is defined then:
+      - config_autoBrightnessLcdBacklightValues should not be defined
+      - config_screenBrightnessNits must be defined
+      - config_screenBrightnessBacklight must be defined
+
+      This array should have size one greater than the size of the config_autoBrightnessLevels
+      array. The brightness values must be non-negative and non-decreasing. This must be
+      overridden in platform specific overlays -->
+    <array name="config_autoBrightnessDisplayValuesNits">
+      <item>5.139055</item>       <!--  0 - 1 -->
+      <item>9.962018965</item>    <!--  1 - 2 -->
+      <item>18.34822964</item>    <!--  2 - 3 -->
+      <item>21.55068128</item>    <!--  3 - 4 -->
+      <item>24.0167788</item>     <!--  4 - 8 -->
+      <item>32.5</item>           <!--  8 - 12 -->
+      <item>46</item>             <!--  12 - 15 -->
+      <item>53.26923077</item>    <!--  15 - 20 -->
+      <item>54.61538462</item>    <!--  20 - 33 -->
+      <item>58.11538462</item>    <!--  33 - 55 -->
+      <item>62.1394</item>        <!--  55 - 90 -->
+      <item>67.13133333</item>    <!--  90 - 148 -->
+      <item>79.67614115</item>    <!--  148 - 245 -->
+      <item>98.04727274</item>    <!--  245 - 403 -->
+      <item>125.1221991</item>    <!--  403 - 665 -->
+      <item>161.6875093</item>    <!--  665 - 1097 -->
+      <item>208.4885553</item>    <!--  1097 - 1808 -->
+      <item>264.8221315</item>    <!--  1808 - 3000 -->
+      <item>328.5869521</item>    <!--  3000 - 6000 -->
+      <item>627.4315413</item>    <!--  6000 - 9000 -->
+      <item>826.8584866</item>    <!--  9000 - 10000 -->
+      <item>867.0494638</item>    <!--  10000 -14000 -->
+      <item>901.4496943</item>    <!--  14000 -20000 -->
+      <item>1100.0</item>         <!--  20000+ -->
+    </array>
 
     <!-- Array of hysteresis constraint values for brightening, represented as tenths of a
          percent. The length of this array is assumed to be one greater than
