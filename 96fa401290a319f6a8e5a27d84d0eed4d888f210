@@ -33,6 +33,23 @@
       "message": "hi op9 god",
       "revId": "96fa401290a319f6a8e5a27d84d0eed4d888f210",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92cddba1_f828075a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000760
+      },
+      "writtenOn": "2024-02-26T15:13:52Z",
+      "side": 1,
+      "message": "tested on my np2 via magisk modules created by abhay",
+      "revId": "96fa401290a319f6a8e5a27d84d0eed4d888f210",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
