@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0071f95_df132a1e",
+        "filename": "overlay/Phone2Frameworks/res/values/dimens.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000925
+      },
+      "writtenOn": "2024-03-08T06:44:26Z",
+      "side": 0,
+      "message": "Change px to dp here",
+      "revId": "218f28fb05e051d57209c6296b33c9b6edf6075d",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
