@@ -16,6 +16,24 @@
       "message": "public void configPreview(CameraCaptureSession cameraCaptureSession, CaptureRequest.Builder builder, List\u003cOutputConfiguration\u003e list, SurfaceTexture surfaceTexture) {\n        ImageWriter imageWriter \u003d this.mRawImageWriter;\n        if (imageWriter !\u003d null) {\n            imageWriter.close();\n        }\n        if (ProductConfig.isSupportQCOMOffline) {\n            return;\n        }\n        this.mRawImageWriter \u003d ImageWriter.newInstance(cameraCaptureSession.getInputSurface(), 3);\n    }\n\n\ncan\u0027t have image preview with offlineparams",
       "revId": "96f91c8f1e96bde54339783a1ece83360bdd7e42",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a081690_53df13e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2024-06-15T06:12:50Z",
+      "side": 1,
+      "message": "cant have offlineparams without the aidl\n\n--------- beginning of crash\n06-15 11:29:01.159  7858  8039 E AndroidRuntime: FATAL EXCEPTION: algoCaptureThread\n06-15 11:29:01.159  7858  8039 E AndroidRuntime: Process: com.nothing.camera, PID: 7858\n06-15 11:29:01.159  7858  8039 E AndroidRuntime: java.lang.UnsatisfiedLinkError: dlopen failed: cannot locate symbol \"_ZTVN7android8hardware17OfflineParametersE\" referenced by \"/system_ext/lib64/libofflineproc_jni.so\"...\n06-15 11:29:01.159  7858  8039 E AndroidRuntime:  at java.lang.Runtime.loadLibrary0(Runtime.java:1082)",
+      "parentUuid": "e9e45dce_8fabf1a6",
+      "revId": "96f91c8f1e96bde54339783a1ece83360bdd7e42",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
