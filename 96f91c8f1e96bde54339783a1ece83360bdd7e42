@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9e45dce_8fabf1a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2024-06-15T06:12:31Z",
+      "side": 1,
+      "message": "public void configPreview(CameraCaptureSession cameraCaptureSession, CaptureRequest.Builder builder, List\u003cOutputConfiguration\u003e list, SurfaceTexture surfaceTexture) {\n        ImageWriter imageWriter \u003d this.mRawImageWriter;\n        if (imageWriter !\u003d null) {\n            imageWriter.close();\n        }\n        if (ProductConfig.isSupportQCOMOffline) {\n            return;\n        }\n        this.mRawImageWriter \u003d ImageWriter.newInstance(cameraCaptureSession.getInputSurface(), 3);\n    }\n\n\ncan\u0027t have image preview with offlineparams",
+      "revId": "96f91c8f1e96bde54339783a1ece83360bdd7e42",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
