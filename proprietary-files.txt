@@ -167,6 +167,7 @@ vendor/lib64/libsndcardparser.so
 vendor/lib64/vendor.qti.hardware.AGMIPC@1.0.so
 
 # Audio (Configurations)
+vendor/etc/audio/sku_cape/audio_effects.xml
 vendor/etc/audio/sku_cape/audio_effects.conf
 vendor/etc/audio/sku_cape/audio_policy_configuration.xml
 vendor/etc/audio/sku_cape/audio_policy_volumes.xml
@@ -790,6 +791,16 @@ vendor/etc/vintf/manifest/vendor.qti.diag.hal.service.xml
 vendor/lib64/libdiag.so
 vendor/lib64/libdiagjni.so
 vendor/lib64/vendor.qti.diaghal@1.0.so
+
+# Dirac
+system/system/etc/permissions/com.dirac.acs.xml
+system/system/etc/sysconfig/preinstalled-packages-dirac.xml
+system/system/priv-app/DiracAudioControlService_DMP/DiracAudioControlService_DMP.apk
+system/system/priv-app/NothingDiracService_DMP/NothingDiracService_DMP.apk
+vendor/etc/dirac/dirac_resource.dar
+vendor/etc/dirac/interface.json
+vendor/lib64/libdirac.so
+vendor/lib64/soundfx/libdiraceffect-afm.so
 
 # Display (Calibration Data)
 vendor/etc/display/qdcm_calib_data_nt37705_amoled_fhd+_120hz_cmd_mode_dsi_visionox_panel.json
