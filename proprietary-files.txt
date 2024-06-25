@@ -797,7 +797,6 @@ system/etc/sysconfig/preinstalled-packages-dirac.xml
 system/priv-app/DiracAudioControlService_DMP/DiracAudioControlService_DMP.apk
 system/priv-app/NothingDiracService_DMP/NothingDiracService_DMP.apk
 vendor/etc/dirac/dirac_resource.dar
-vendor/etc/dirac/interface.json
 vendor/lib64/libdirac.so
 vendor/lib64/soundfx/libdiraceffect-afm.so
 
