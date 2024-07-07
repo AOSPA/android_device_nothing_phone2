@@ -1,4 +1,0 @@
-# Dirac
-persist.vendor.dirac.           u:object_r:vendor_audio_prop:s0
-ro.vendor.dirac.                u:object_r:vendor_audio_prop:s0
-vendor.dirac.                   u:object_r:vendor_audio_prop:s0
