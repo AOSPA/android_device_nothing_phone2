@@ -793,7 +793,6 @@ vendor/lib64/vendor.qti.diaghal@1.0.so
 
 # Display (Calibration Data)
 vendor/etc/display/qdcm_calib_data_nt37705_amoled_fhd+_120hz_cmd_mode_dsi_visionox_panel.json
-vendor/etc/displayconfig/display_id_4630946639017191810.xml
 
 # Display (HDR)
 vendor/lib64/libhdr10plus.so
