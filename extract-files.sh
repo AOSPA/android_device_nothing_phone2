@@ -58,6 +58,9 @@ function blob_fixup() {
         vendor/bin/hw/android.hardware.security.keymint-service-qti)
             grep -q "android.hardware.security.rkp-V3-ndk.so" "${2}" || ${PATCHELF} --add-needed "android.hardware.security.rkp-V3-ndk.so" "${2}"
             ;;
+        vendor/lib64/libwvhidl.so)
+            grep -q "libcrypto_shim.so" "${2}" || "${PATCHELF}" --add-needed "libcrypto_shim.so" "${2}"
+            ;;
     esac
 }
 
