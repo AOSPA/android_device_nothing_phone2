@@ -262,6 +262,10 @@ TARGET_COMMON_QTI_COMPONENTS := \
     wfd \
     wlan
 
+# Radio
+PRODUCT_PACKAGES += \
+    libhidlbase_shim
+
 # Sensors
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
