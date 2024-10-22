@@ -1418,7 +1418,6 @@ vendor/lib64/libnative-api.so
 vendor/lib64/libpdmapper.so
 vendor/lib64/libpdnotifier.so
 vendor/lib64/libqcrilDataModule.so
-vendor/lib64/libqcrilNr.so
 vendor/lib64/libqcrilNrCellInfoModule.so
 vendor/lib64/libqcrilNrFramework.so
 vendor/lib64/libqcrilNrImsModule.so
@@ -1485,6 +1484,9 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.0.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so
+
+# RIL - from A15 DP2
+vendor/lib64/libqcrilNr.so|37701e24970f1b7338d9d4c215f00fbfffb60b6d
 
 # SCVE
 vendor/lib64/libscveCommon.so
