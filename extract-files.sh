@@ -69,6 +69,10 @@ function blob_fixup() {
             [ -n "$(tail -c 1 "${2}")" ] && echo >> "${2}"
             grep -q "gettid: 1" "${2}" || echo "gettid: 1" >> "${2}"
             ;;
+        vendor/lib64/libmorpho_video_stabilizer.so)
+            [ "$2" = "" ] && return 0
+            grep -q "libutils.so" "${2}" || "${PATCHELF}" --add-needed "libutils.so" "${2}"
+            ;;
         vendor/lib64/libwvhidl.so)
             [ "$2" = "" ] && return 0
             grep -q "libcrypto_shim.so" "${2}" || "${PATCHELF}" --add-needed "libcrypto_shim.so" "${2}"
