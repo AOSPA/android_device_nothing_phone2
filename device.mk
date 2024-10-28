@@ -48,10 +48,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_cape_qssi/audio_policy_configuration.xml \
     $(DEVICE_PATH)/configs/dirac/interface.json:$(TARGET_COPY_OUT_VENDOR)/etc/dirac/interface.json
 
-# Authsecret
-PRODUCT_PACKAGES += \
-    android.hardware.authsecret@1.0.vendor
-
 # AVB
 BOARD_AVB_ENABLE := true
 
@@ -60,7 +56,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3.vendor \
     android.hardware.biometrics.fingerprint@2.3-service.nothing
 
 TARGET_USES_FOD_ZPOS := true
@@ -72,12 +67,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
-
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.7.vendor \
-    libcamera2ndk_vendor \
-    vendor.qti.hardware.camera.aon@1.0.vendor \
-    vendor.qti.hardware.camera.postproc@1.0.vendor
 
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -94,9 +83,7 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm-service.clearkey \
-    android.hardware.drm@1.4.vendor \
-    libcrypto_shim
+    android.hardware.drm-service.clearkey
 
 # Emulated Storage
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
@@ -105,10 +92,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 PRODUCT_PACKAGES += \
     fs_config_files
 
-# Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0.vendor
-
 # Generic ramdisk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
@@ -116,19 +99,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/gps/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
 
-PRODUCT_PACKAGES += \
-    android.hardware.gnss-V1-ndk_platform.vendor
-
 # Health
 $(call inherit-product, vendor/qcom/opensource/healthd-ext/health-vendor-product.mk)
-
-PRODUCT_PACKAGES += \
-    android.hardware.health@1.0.vendor \
-    android.hardware.health@2.1.vendor
-
-# Identity
-PRODUCT_PACKAGES += \
-    android.hardware.identity-V3-ndk_platform.vendor
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -148,19 +120,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.hardware_keystore.xml \
-    android.hardware.keymaster@4.1.vendor \
-    libkeymaster_messages.vendor
+    android.hardware.hardware_keystore.xml
 
 # Keymint
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
-
-PRODUCT_PACKAGES += \
-    android.hardware.security.keymint-V1-ndk_platform.vendor \
-    android.hardware.security.rkp-V3-ndk.vendor \
-    android.hardware.security.secureclock-V1-ndk_platform.vendor \
-    android.hardware.security.sharedsecret-V1-ndk_platform.vendor
 
 # Lineage Health
 PRODUCT_PACKAGES += \
@@ -172,24 +136,9 @@ DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/configs/vintf/manifest_cape.xml \
     $(DEVICE_PATH)/configs/vintf/manifest_phone2.xml
 
-# Media
-PRODUCT_PACKAGES += \
-    libavservices_minijail_vendor \
-    libcodec2_hidl@1.2.vendor \
-    libcodec2_soft_common.vendor \
-    libsfplugin_ccodec_utils.vendor
-
-# NDK
-NEED_AIDL_NDK_PLATFORM_BACKEND := true
-
-# Net
-PRODUCT_PACKAGES += \
-    android.system.net.netd@1.1.vendor
-
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.2.vendor \
-    android.hardware.nfc@1.0-impl:64 \
+    android.hardware.nfc@1.0-impl \
     NfcNci \
     Tag
 
@@ -232,12 +181,6 @@ PRODUCT_PACKAGES += \
 # Partitions - Vendor
 ENABLE_VENDOR_IMAGE := true
 
-# QRTR
-PRODUCT_PACKAGES += \
-    qrtr-ns \
-    qrtr-lookup \
-    libqrtr
-
 # Powershare
 PRODUCT_PACKAGES += \
     vendor.aospa.powershare-service
@@ -260,10 +203,6 @@ TARGET_COMMON_QTI_COMPONENTS := \
     wfd \
     wlan
 
-# Radio
-PRODUCT_PACKAGES += \
-    libhidlbase_shim
-
 # Sensors
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
@@ -281,9 +220,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml
 
 PRODUCT_PACKAGES += \
-    android.frameworks.sensorservice@1.0.vendor \
     android.hardware.sensors@2.1-service.phone2-multihal \
-    libsensorndkbridge \
     sensors.nothing
 
 # Soong namespaces
@@ -293,25 +230,13 @@ PRODUCT_SOONG_NAMESPACES += \
 # Storage
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# Suspend
-PRODUCT_PACKAGES += \
-    libsuspend
-
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.qti-v2
 
-# TrustedUI
-PRODUCT_PACKAGES += \
-    android.hidl.memory.block@1.0.vendor \
-    vendor.qti.hardware.systemhelper@1.0.vendor
-
 # Vibrator
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
-
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator-V2-ndk_platform.vendor
 
 # WLAN
 PRODUCT_PACKAGES += \
