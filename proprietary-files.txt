@@ -126,9 +126,9 @@ vendor/lib64/lib_lvacfs.so
 vendor/lib64/libadm.so
 vendor/lib64/libar-acdb.so
 vendor/lib64/libar-gpr.so
--vendor/lib64/libar-gsl.so
--vendor/lib64/libar-pal.so
--vendor/lib64/libats.so
+vendor/lib64/libar-gsl.so
+vendor/lib64/libar-pal.so
+vendor/lib64/libats.so
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libbatterylistener.so
 vendor/lib64/libcapiv2svacnnvendor.so
@@ -141,14 +141,13 @@ vendor/lib64/libfmpal.so
 vendor/lib64/liblistensoundmodel2vendor.so
 vendor/lib64/liblvacfs_wrapper.so
 vendor/lib64/liblx-ar_util.so
--vendor/lib64/liblx-osal.so
+vendor/lib64/liblx-osal.so
 vendor/lib64/libmcs.so
 vendor/lib64/libpalclient.so
 vendor/lib64/libqtigefar.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0.so
 vendor/lib64/vendor.qti.hardware.pal@1.0-impl.so
-vendor/lib64/vendor.qti.hardware.pal@1.0.so
 
 # Audio (AGM)
 vendor/bin/hw/vendor.qti.hardware.AGMIPC@1.0-service
@@ -156,15 +155,14 @@ vendor/bin/agmcap
 vendor/bin/agmcompressplay
 vendor/bin/agmplay
 vendor/etc/init/vendor.qti.hardware.AGMIPC@1.0-service.rc
--vendor/lib64/libagm.so
+vendor/lib64/libagm.so
 vendor/lib64/libagm_compress_plugin.so
 vendor/lib64/libagm_mixer_plugin.so
 vendor/lib64/libagm_pcm_plugin.so
 vendor/lib64/libagmclient.so
 vendor/lib64/libagmmixer.so
 vendor/lib64/libsndcardparser.so
--vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
-vendor/lib64/vendor.qti.hardware.AGMIPC@1.0.so
+vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
 
 # Audio (Configurations)
 vendor/etc/audio/sku_cape/audio_effects.conf
@@ -610,6 +608,8 @@ vendor/lib64/libremosaic_wrapper.so
 vendor/lib64/libremosaiclib.so
 vendor/lib64/librmsclib1.so
 vendor/lib64/libsfeShiftExtrapolation.so
+vendor/lib64/libspectre.so
+vendor/lib64/libstfaceunlockppl.so
 vendor/lib64/libsuperresolution_raw.arcsoft.so
 vendor/lib64/libswregistrationalgo.so
 vendor/lib64/libsynx.so
@@ -811,12 +811,7 @@ vendor/lib64/libhdrdynamicootf.so
 
 # Display (HWC)
 vendor/etc/snapdragon_color_libs_config.xml
-vendor/lib64/vendor.qti.hardware.display.config-V7-ndk_platform.so
 vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0.so
-
-# Display (Postprocessing)
-vendor/lib64/vendor.display.color@1.6.so
-vendor/lib64/vendor.display.color@1.7.so
 
 # DPM
 vendor/bin/dpmQmiMgr
@@ -915,7 +910,7 @@ vendor/firmware/evass.mdt
 
 # FASTCV
 vendor/lib64/libfastcvdsp_stub.so
--vendor/lib64/libfastcvopt.so
+vendor/lib64/libfastcvopt.so
 
 # Fingerprint
 vendor/lib64/hw/fingerprint.default.so
@@ -941,7 +936,6 @@ vendor/etc/init/init.qti.fm.rc
 vendor/etc/init.qti.fm.sh
 vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so
 vendor/lib64/ftm_fm_lib.so
-vendor/lib64/vendor.qti.hardware.fm@1.0.so
 
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
@@ -954,7 +948,7 @@ vendor/bin/edgnss-daemon
 vendor/bin/engine-service
 vendor/bin/garden_app
 vendor/bin/loc_launcher
-vendor/bin/lowi-server
+vendor/bin/lowi-server;DISABLE_CHECKELF
 vendor/bin/mlid
 vendor/bin/qwes_cli
 vendor/bin/slim_daemon
@@ -1165,7 +1159,7 @@ vendor/etc/media_profiles_cape.xml
 vendor/lib64/libmmosal_vendor.so
 
 # Memory
--vendor/lib64/libvmmem.so
+vendor/lib64/libvmmem.so
 
 # MMI
 vendor/bin/hw/vendor.qti.hardware.factory@1.0-service
@@ -1207,13 +1201,10 @@ vendor/etc/permissions/com.nxp.nfc.xml
 vendor/etc/libnfc-nci.conf
 vendor/etc/libnfc-nxp.conf
 vendor/lib64/jcos_client.so
-vendor/lib64/libchrome.so
 vendor/lib64/libpn560_fw.so
 vendor/lib64/ls_client.so
 vendor/lib64/nfc_nci_nxp_snxxx.so
 vendor/lib64/se_extn_client.so
-vendor/lib64/vendor.nxp.nxpese@1.0.so
-vendor/lib64/vendor.nxp.nxpnfc@2.0.so
 vendor/libnfc-nxp_RF.conf
 
 # Peripheral Manager
@@ -1234,7 +1225,6 @@ vendor/lib64/vendor.qti.hardware.power.powermodule@1.0.so
 vendor/bin/qcc-trd
 vendor/etc/init/init.qdmastats.rc
 vendor/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so
-vendor/lib64/libgrpc++_unsecure.so
 vendor/lib64/libqcc_file_agent.so
 vendor/lib64/libqdma_file_agent.so
 vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so
@@ -1247,7 +1237,6 @@ vendor/bin/init.qti.qcv.sh
 vendor/etc/init/init.qti.qcv.rc
 
 # QESDK
-system_ext/lib64/libqesdk_ndk_platform.qti.so
 vendor/etc/seccomp_policy/qesdk.policy
 vendor/etc/seccomp_policy/sensors-qesdk.policy
 vendor/lib64/libqesdk.so
@@ -1258,7 +1247,6 @@ vendor/lib64/vendor.qti.qesdhal@1.1.so
 vendor/lib64/vendor.qti.qesdsys-V1-ndk_platform.so
 
 # QMI
-system/etc/sysconfig/qti_whitelist.xml
 vendor/bin/irsc_util
 vendor/bin/qmipriod
 vendor/etc/init/qmipriod.rc
@@ -1685,7 +1673,7 @@ vendor/etc/init/vendor.qti.tftp.rc
 vendor/bin/thermal-engine-v2
 vendor/etc/init/init_thermal-engine-v2.rc
 vendor/etc/thermal-engine.conf
--vendor/lib64/libthermalclient.so
+vendor/lib64/libthermalclient.so
 
 # Time Services
 vendor/app/TimeService/TimeService.apk
@@ -1722,6 +1710,7 @@ vendor/lib64/libsi.so
 vendor/lib64/vendor.qti.hardware.trustedui@1.0.so
 vendor/lib64/vendor.qti.hardware.trustedui@1.1.so
 vendor/lib64/vendor.qti.hardware.trustedui@1.2.so
+vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 
 # Trusted User Interface Listener
 vendor/bin/trusteduilistener
@@ -1789,7 +1778,6 @@ vendor/etc/wifi/wpa_supplicant.conf
 vendor/etc/wifi/wpa_supplicant_overlay.conf
 
 # WiFi Display
-system_ext/lib64/com.qualcomm.qti.wifidisplayhal@1.0.so
 vendor/bin/wfdhdcphalservice
 vendor/bin/wfdvndservice
 vendor/bin/wifidisplayhalservice
