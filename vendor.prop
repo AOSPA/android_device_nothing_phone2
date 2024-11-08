@@ -15,11 +15,10 @@ persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=true
 ro.vendor.bluetooth.csip_qti=true
 
 # Dirac
-ro.vendor.dirac.acs.forceAfm=true
-ro.vendor.dirac.acs.ignore_error=1
-ro.vendor.dirac.acs.startAtBoot=3
-ro.vendor.dirac.acs.storeSettings=1
-ro.vendor.dirac.startAtBoot=3
+persist.vendor.newdirac.dump=0
+persist.vendor.newdirac.enable.value=1.000000
+persist.vendor.newdirac.volume.value=0.000000
+persist.vendor.newdirac.cur.config=MUSIC
 
 # Display
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
@@ -63,8 +62,8 @@ vendor.media.omx=0
 ro.netflix.bsp_rev=Q8450-34634-1
 
 # NTF
-ro.vendor.nothing.feature.base=0x8124a040124b4247b97ffL
-ro.vendor.nothing.feature.diff.device.Pong=0x4a404803d9842000
+ro.vendor.nothing.feature.base=0x18428124a040126b4247b97ffL
+ro.vendor.nothing.feature.diff.device.Pong=0x8a0044a404803d1842000L
 
 # Sensors
 persist.vendor.sensors.enable.mag_filter=true
