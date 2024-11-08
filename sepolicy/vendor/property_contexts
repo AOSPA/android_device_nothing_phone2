@@ -1,4 +1,6 @@
 # Dirac
 persist.vendor.dirac.           u:object_r:vendor_audio_prop:s0
+persist.vendor.newAAC.          u:object_r:vendor_nothing_newAAC_prop:s0
+persist.vendor.newdirac.        u:object_r:vendor_nothing_newdirac_prop:s0
 ro.vendor.dirac.                u:object_r:vendor_audio_prop:s0
 vendor.dirac.                   u:object_r:vendor_audio_prop:s0
