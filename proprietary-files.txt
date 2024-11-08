@@ -508,7 +508,6 @@ vendor/lib64/com.qualcomm.mcx.policy.xr.so
 vendor/lib64/com.qualcomm.qti.mcx.usecase.extension.so
 vendor/lib64/libFace3DTA.so
 vendor/lib64/libFace3D_hlos.so
-vendor/lib64/libPlatformValidatorShared.so
 vendor/lib64/libQ6MSFR_manager_stub.so
 vendor/lib64/libaidenoiser.so
 vendor/lib64/libaidenoiserv2.so
@@ -566,7 +565,6 @@ vendor/lib64/libdlrmsc.so
 vendor/lib64/libdualcam_optical_zoom_control.so
 vendor/lib64/libdualcam_video_optical_zoom.so
 vendor/lib64/libeepromcutter.so
-vendor/lib64/libengineerjni.so
 vendor/lib64/libface3d_dev.so
 vendor/lib64/libhme.so
 vendor/lib64/libipebpsstriping.so
@@ -791,13 +789,11 @@ vendor/lib64/libdiagjni.so
 vendor/lib64/vendor.qti.diaghal@1.0.so;MODULE_SUFFIX=_vendor
 
 # Dirac
-system/etc/permissions/com.dirac.acs.xml
-system/etc/sysconfig/preinstalled-packages-dirac.xml
-system/priv-app/DiracAudioControlService_DMP/DiracAudioControlService_DMP.apk
-system/priv-app/NothingDiracService_DMP/NothingDiracService_DMP.apk
+system/etc/sysconfig/preinstalled-packages-audioeffect.xml
+system/priv-app/NothingAudioEffectService/NothingAudioEffectService.apk
 vendor/etc/dirac/dirac_resource.dar
 vendor/lib64/libdirac.so
-vendor/lib64/soundfx/libdiraceffect-afm.so
+vendor/lib64/soundfx/libdiraceffect_NT.so
 
 # Display (Calibration Data)
 vendor/etc/display/qdcm_calib_data_nt37705_amoled_fhd+_120hz_cmd_mode_dsi_visionox_panel.json
@@ -850,6 +846,7 @@ vendor/lib64/vendor.qti.hardware.embmssl@1.1.so;MODULE_SUFFIX=_vendor
 vendor/bin/hw/vendor.qti.esepowermanager@1.1-service
 vendor/etc/init/vendor.qti.esepowermanager@1.1-service.rc
 vendor/lib64/hw/vendor.qti.esepowermanager@1.1-impl.so
+vendor/lib64/libesepmconfig.so
 vendor/lib64/libesesbprovision.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.1.so
@@ -952,22 +949,15 @@ vendor/bin/qwes_cli
 vendor/bin/slim_daemon
 vendor/bin/xtra-daemon
 vendor/bin/xtwifi-client
-vendor/bin/xtwifi-inet-agent
 vendor/etc/init/loc-launcher.rc
-vendor/etc/seccomp_policy/gnss@2.0-xtwifi-inet-agent.policy
 vendor/etc/vintf/manifest/android.hardware.gnss-aidl-service-qti.xml
 vendor/etc/vintf/manifest/android.hardware.gnss@2.1-service-qti.xml
 vendor/etc/vintf/manifest/vendor.qti.gnss-service.xml
 vendor/etc/apdr.conf
-vendor/etc/cacert_location.pem
 vendor/etc/izat.conf
 vendor/etc/lowi.conf
 vendor/etc/sap.conf
-vendor/etc/xtra_root_cert.pem
 vendor/etc/xtwifi.conf
-vendor/lib64/libasn1cper.so
-vendor/lib64/libasn1crt.so
-vendor/lib64/libasn1crtx.so
 vendor/lib64/libcacertclient.so
 vendor/lib64/libdataitems.so
 vendor/lib64/libengineplugin.so
@@ -1000,9 +990,8 @@ vendor/lib64/libslimclient.so
 vendor/lib64/libsynergy_loc_api.so
 vendor/lib64/libsys_info_cache.so
 vendor/lib64/libxtadapter.so
-vendor/lib64/libxtwifi_server_protocol.so
-vendor/lib64/libxtwifi_server_protocol_uri_v3.so
 vendor/lib64/vendor.qti.gnss-V3-ndk_platform.so
+vendor/lib64/vendor.qti.gnss-V5-ndk_platform.so
 vendor/lib64/vendor.qti.gnss-service.so
 
 # Graphics (Adreno firmware)
@@ -1157,25 +1146,11 @@ vendor/lib64/vendor.qti.hardware.factory@1.1.so
 vendor/etc/public.libraries.txt
 
 # Neural Networks
-vendor/lib64/libQnnChrometraceProfilingReader.so
-vendor/lib64/libQnnCpu.so
-vendor/lib64/libQnnDsp.so
-vendor/lib64/libQnnDspNetRunExtensions.so
-vendor/lib64/libQnnGpu.so
-vendor/lib64/libQnnGpuNetRunExtensions.so
-vendor/lib64/libQnnGpuProfilingReader.so
-vendor/lib64/libQnnHta.so
-vendor/lib64/libQnnHtaNetRunExtensions.so
 vendor/lib64/libQnnHtp.so
-vendor/lib64/libQnnHtpNetRunExtensions.so
-vendor/lib64/libQnnHtpPrepare.so
-vendor/lib64/libQnnHtpProfilingReader.so
 vendor/lib64/libQnnHtpV69Stub.so
-vendor/lib64/libQnnSaver.so
-vendor/lib64/libQnnSystem.so
-vendor/lib64/libhta_hexagon_runtime_qnn.so
 
 # NFC
+system/etc/permissions/com.nxp.nfc.xml
 system/framework/com.nxp.nfc.jar
 vendor/bin/hw/android.hardware.nfc_snxxx@1.2-service
 vendor/etc/init/android.hardware.nfc_snxxx@1.2-service.rc
@@ -1324,7 +1299,6 @@ vendor/lib64/libqtr_sdk.so
 vendor/lib64/libqvr_cam_cdsp_driver_stub.so
 vendor/lib64/libqvr_cdsp_driver_stub.so
 vendor/lib64/libqvr_eyetracking_plugin.so
-vendor/lib64/libqvr_hostcontroller_plugin.so
 vendor/lib64/libqvrcamera_client.qti.so
 vendor/lib64/libqvrservice.so
 vendor/lib64/libqvrservice_client.qti.so
@@ -1391,6 +1365,7 @@ vendor/lib64/libnative-api.so
 vendor/lib64/libpdmapper.so
 vendor/lib64/libpdnotifier.so
 vendor/lib64/libqcrilDataModule.so
+vendor/lib64/libqcrilNr.so
 vendor/lib64/libqcrilNrCellInfoModule.so
 vendor/lib64/libqcrilNrFramework.so
 vendor/lib64/libqcrilNrImsModule.so
@@ -1458,9 +1433,6 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so;MODULE_SUFFIX=_v
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so;MODULE_SUFFIX=_vendor
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so;MODULE_SUFFIX=_vendor
 
-# RIL - from A15 DP2
-vendor/lib64/libqcrilNr.so|37701e24970f1b7338d9d4c215f00fbfffb60b6d
-
 # SCVE
 vendor/lib64/libscveCommon.so
 vendor/lib64/libscveCommon_stub.so
@@ -1486,6 +1458,7 @@ vendor/lib64/libsns_api.so
 vendor/lib64/libsns_device_mode_stub.so
 vendor/lib64/libsns_direct_channel_stub.so
 vendor/lib64/libsns_registry_skel.so
+vendor/lib64/libsnsapi-full.so
 vendor/lib64/libsnsapi.so
 vendor/lib64/libsnsdiaglog.so
 vendor/lib64/libssc.so
@@ -1573,6 +1546,7 @@ vendor/etc/sensors/config/sns_tilt.json
 vendor/etc/sensors/config/sns_tilt_sw_disabled.json
 vendor/etc/sensors/config/sns_tilt_sw_enabled.json
 vendor/etc/sensors/config/sns_tilt_to_wake.json
+vendor/etc/sensors/config/sns_transport_ppe.json
 vendor/etc/sensors/config/sns_wrist_pedo.json
 vendor/etc/sensors/config/ukee_ak991x_0.json
 vendor/etc/sensors/config/ukee_bu52053nvx_0.json
@@ -1736,11 +1710,21 @@ vendor/lib64/vendor.qti.hardware.vpp@2.0.so
 # VPU (firmware)
 vendor/firmware/venus.mbn
 vendor/firmware/venus_4mb.mbn
+vendor/firmware/venus_4mb_ecdsa.mbn
 vendor/firmware/venus_4mb_unsigned.mbn
 vendor/firmware/venus_4mb_v6.mbn
+vendor/firmware/venus_4mb_v6_rsa.mbn
 vendor/firmware/venus_4mb_v7.mbn
+vendor/firmware/venus_5mb.mbn
+vendor/firmware/venus_5mb_ecdsa.mbn
+vendor/firmware/venus_5mb_unsigned.mbn
+vendor/firmware/venus_5mb_v6.mbn
+vendor/firmware/venus_5mb_v6_rsa.mbn
+vendor/firmware/venus_5mb_v7.mbn
+vendor/firmware/venus_ecdsa.mbn
 vendor/firmware/venus_unsigned.mbn
 vendor/firmware/venus_v6.mbn
+vendor/firmware/venus_v6_rsa.mbn
 vendor/firmware/venus_v7.mbn
 vendor/firmware/vpu20_1v.mbn
 vendor/firmware/vpu20_1v_unsigned.mbn
