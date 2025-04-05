@@ -237,15 +237,6 @@ vendor/etc/lvacfs_params/4mic/LVIMFS_Parameter_xxxx_ID3_MIC_HDR_wideband.txt
 vendor/etc/lvacfs_params/4mic/LVIMFS_Parameter_xxxx_ID4_MIC_Cam_back.txt
 vendor/etc/lvacfs_params/4mic/audiozoom_4.txt
 
-# Audio (SoundFX)
-vendor/lib64/soundfx/libasphere.so
-vendor/lib64/soundfx/libqcompostprocbundle.so
-vendor/lib64/soundfx/libqcomvisualizer.so
-vendor/lib64/soundfx/libqcomvoiceprocessing.so
-vendor/lib64/soundfx/libreverbwrapper.so
-vendor/lib64/soundfx/libshoebox.so
-vendor/lib64/soundfx/libvolumelistener.so
-
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
