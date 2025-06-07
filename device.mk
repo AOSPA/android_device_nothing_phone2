@@ -58,6 +58,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.nothing
 
+$(call soong_config_set,surfaceflinger,udfps_lib,//$(DEVICE_PATH):libudfps_extension.nothing)
+
 TARGET_USES_FOD_ZPOS := true
 
 # Camera
