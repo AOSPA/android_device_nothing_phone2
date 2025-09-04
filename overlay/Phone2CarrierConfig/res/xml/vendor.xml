@@ -3688,6 +3688,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_vt_available_bool" value="false" />
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="true" />
         <boolean name="show_4g_for_lte_data_icon_bool" value="false" />
+        <boolean name="nt_hide_3G_mode_bool" value="true" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
     </carrier_config>
     <carrier_config cid="5" name="Odido">
         <boolean name="enabledMMS" value="false" />
@@ -4507,6 +4509,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="nt_hide_5g_standalone_bool" value="true" />
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
     <carrier_config cid="1309" name="MTN">
         <boolean name="carrier_vt_available_bool" value="false" />
@@ -4572,6 +4576,13 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_vt_available_bool" value="false" />
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="true" />
         <int name="carrier_default_wfc_ims_mode_int" value="1" />
+        <boolean name="nt_hide_3G_mode_bool" value="true" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
+        <boolean name="nt_carrier_default_sa_enabled_bool" value="true" />
+        <boolean name="nt_hide_5g_standalone_bool" value="true" />
+        <boolean name="vonr_enabled_bool" value="true" />
+        <boolean name="vonr_on_by_default_bool" value="true" />
+        <boolean name="vonr_setting_visibility_bool" value="false" />
     </carrier_config>
     <carrier_config cid="1414" name="Salt">
         <int name="smsToMmsTextThreshold" value="6" />
@@ -5079,6 +5090,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="hide_preferred_network_type_bool" value="true" />
         <string name="nt_carrier_ims_user_agent_string">Vodafone VOLTE</string>
         <int name="carrier_default_wfc_ims_mode_int" value="1" />
+        <boolean name="carrier_default_wfc_ims_enabled_bool" value="true" />
+        <boolean name="nt_hide_5g_standalone_bool" value="true" />
+        <boolean name="nt_carrier_default_sa_enabled_bool" value="true" />
+        <boolean name="hide_smart_5g_bool" value="true" />
     </carrier_config>
     <carrier_config cid="1737" name="Turk Telekom">
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
@@ -5095,6 +5110,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
     <carrier_config cid="1839" name="Verizon Wireless">
         <boolean name="carrier_vt_available_bool" value="false" />
@@ -5323,12 +5339,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
     <carrier_config cid="2037" name="Bite">
         <boolean name="rtt_supported_bool" value="true" />
     </carrier_config>
     <carrier_config cid="2038" name="unifi mobile">
         <boolean name="nt_carrier_default_sa_enabled_bool" value="true" />
+    </carrier_config>
+    <carrier_config cid="2067" name="Lyca Mobile">
+        <string name="carrier_name_string" />
     </carrier_config>
     <carrier_config cid="2091" name="Bonbon">
         <boolean name="display_hd_audio_property_bool" value="false" />
@@ -5444,6 +5464,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
     <carrier_config cid="2120" name="FirstNet (Lab)">
         <boolean name="carrier_vt_available_bool" value="false" />
@@ -5453,6 +5474,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
     <carrier_config cid="2124" name="Iliad">
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
@@ -5460,6 +5482,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     </carrier_config>
     <carrier_config cid="2129" name="ALDI mobile">
         <string name="nt_carrier_ims_user_agent_string">Telstra</string>
+    </carrier_config>
+    <carrier_config cid="2140" name="Smarty">
+        <boolean name="carrier_vt_available_bool" value="false" />
+        <boolean name="nt_hide_3G_mode_bool" value="true" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
+    </carrier_config>
+    <carrier_config cid="2141" name="Superdrug">
+        <boolean name="nt_hide_3G_mode_bool" value="true" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
     </carrier_config>
     <carrier_config cid="2237" name="China Telecom">
         <boolean name="nt_carrier_enhance_nr_icon_bool" value="true" />
@@ -5816,6 +5847,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
             <item value="+448003768888" />
         </string-array>
     </carrier_config>
+    <carrier_config cid="2425" name="iD Mobile">
+        <boolean name="nt_hide_3G_mode_bool" value="true" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
+    </carrier_config>
     <carrier_config cid="2429" name="Rakuten Mobile(MNO)">
         <boolean name="additional_settings_call_waiting_visibility_bool" value="false" />
         <boolean name="additional_settings_caller_id_visibility_bool" value="false" />
@@ -5955,6 +5990,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_vt_available_bool" value="false" />
         <boolean name="carrier_default_wfc_ims_enabled_bool" value="true" />
         <boolean name="show_4g_for_lte_data_icon_bool" value="false" />
+        <boolean name="nt_hide_3G_mode_bool" value="true" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="999" mnc="99" name="Telet">
         <boolean name="carrier_volte_available_bool" value="false" />
@@ -5996,6 +6033,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="nt_hide_5g_standalone_bool" value="true" />
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
     <carrier_config cid="10027" name="LINEMO">
         <boolean name="carrier_vt_available_bool" value="false" />
@@ -6009,6 +6048,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="nt_hide_5g_standalone_bool" value="true" />
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
     <carrier_config cid="10029" name="Cricket 5G">
         <boolean name="carrier_vt_available_bool" value="false" />
@@ -6019,6 +6060,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <string-array name="nt_5g_plus_display_rules_string_array" num="1">
             <item value="UWB" />
         </string-array>
+        <boolean name="hide_preferred_network_type_bool" value="true" />
     </carrier_config>
 
 </carrier_config_list>
