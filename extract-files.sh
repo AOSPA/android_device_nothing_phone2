@@ -61,6 +61,9 @@ function blob_fixup() {
             "${PATCHELF}" --replace-needed "android.hardware.identity-V3-ndk_platform.so" "android.hardware.identity-V3-ndk.so" "${2}"
             "${PATCHELF}" --replace-needed "android.hardware.keymaster-V3-ndk_platform.so" "android.hardware.keymaster-V3-ndk.so" "${2}"
             ;;
+        vendor/bin/hw/android.hardware.power.stats-service)
+            "${PATCHELF}" --replace-needed "android.hardware.power.stats-V1-ndk_platform.so" "android.hardware.power.stats-V1-ndk.so" "${2}"
+            ;;
         vendor/bin/hw/android.hardware.security.keymint-service-qti|vendor/lib64/libqtikeymint.so)
             [ "$2" = "" ] && return 0
             "${PATCHELF}" --replace-needed "android.hardware.security.keymint-V1-ndk_platform.so" "android.hardware.security.keymint-V1-ndk.so" "${2}"
