@@ -1,5 +1,5 @@
 <displayConfiguration>
-    <screenBrightnessMap>
+    <screenBrightnessMap interpolation="linear">
         <point>
             <value>0.0</value>
             <nits>2.0</nits>
@@ -57,7 +57,7 @@
         <sdrHdrRatioMap>
             <point>
                 <sdrNits>2.0</sdrNits>
-                <hdrRatio>4.5</hdrRatio>
+                <hdrRatio>4.0</hdrRatio>
             </point>
             <point>
                 <sdrNits>100.0</sdrNits>
