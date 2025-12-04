@@ -3,7 +3,7 @@ persist.bluetooth.bqr.event_mask=0x8000000E
 persist.bluetooth.bqr.min_interval_ms=6000
 
 # Display
-persist.sys.brightness.low.gamma=true
+sys.brightness.disable_gamma_conversion=true
 
 # Netmgr
 persist.data.df.agg.dl_pkt=10
