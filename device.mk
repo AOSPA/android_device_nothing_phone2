@@ -153,6 +153,7 @@ PRODUCT_PACKAGES += \
 # Overlays
 PRODUCT_PACKAGES += \
     aptxalsOverlay \
+    Phone2Aperture \
     Phone2CarrierConfig \
     Phone2Frameworks \
     Phone2Nfc \
