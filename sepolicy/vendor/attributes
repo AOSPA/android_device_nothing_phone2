@@ -1,0 +1,3 @@
+attribute hal_noth_camera;
+attribute hal_noth_camera_client;
+attribute hal_noth_camera_server;
