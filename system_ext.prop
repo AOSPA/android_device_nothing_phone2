@@ -2,6 +2,9 @@
 persist.bluetooth.bqr.event_mask=0x8000000E
 persist.bluetooth.bqr.min_interval_ms=6000
 
+# Device
+ro.product.brand_device_name=Nothing Phone (2)
+
 # Display
 sys.brightness.disable_gamma_conversion=true
 

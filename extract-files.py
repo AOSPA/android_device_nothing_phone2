@@ -111,8 +111,6 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.hardware.gnss-V1-ndk_platform.so', 'android.hardware.gnss-V1-ndk.so'),
     'vendor/lib64/libmorpho_video_stabilizer.so': blob_fixup()
         .add_needed('libutils.so'),
-    ('vendor/lib64/libntcamallocator.so', 'vendor/lib64/vendor.noth.hardware.camera-service-impl.so'): blob_fixup()
-        .add_needed('libui_shim.so'),
     'vendor/lib64/libwvhidl.so': blob_fixup()
         .add_needed('libcrypto_shim.so'),
     'vendor/lib64/nfc_nci_nxp_snxxx.so': blob_fixup()
