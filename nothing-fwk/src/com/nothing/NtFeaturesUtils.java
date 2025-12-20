@@ -8,6 +8,13 @@ import java.util.BitSet;
 
 public class NtFeaturesUtils {
 
+    public static final int NTF_QCOM = 59;
+    public static final int NTF_MTK = 60;
+    public static final int NTF_SPACEWAR = 61;
+    public static final int NTF_PONG = 62;
+    public static final int NTF_DRAGONITE = 110;
+    public static final int NTF_BACKGROUND_RES_LIMIT = 115;
+
     private static final BitSet sFeatures;
 
     static {
