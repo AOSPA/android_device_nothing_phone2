@@ -1,0 +1,12 @@
+type ntf, domain;
+type ntf_exec, exec_type, vendor_file_type, file_type;
+type ntf_file, file_type;
+
+init_daemon_domain(ntf)
+
+allow ntf device:dir { add_name search write };
+allow ntf device:file { create getattr open read write };
+type_transition ntf device:file ntf_file;
+allow ntf ntf_file:file { create getattr open read setattr write map };
+
+r_dir_file(domain, ntf_file)

@@ -1,0 +1,6 @@
+hal_attribute_service(vendor_hal_noth_camera, vendor_hal_noth_camera_service)
+
+wakelock_use(vendor_hal_noth_camera_server)
+
+binder_call(vendor_hal_noth_camera_client, vendor_hal_noth_camera_server)
+binder_call(vendor_hal_noth_camera_server, vendor_hal_noth_camera_client)

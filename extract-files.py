@@ -105,6 +105,8 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.hardware.vibrator-V2-ndk_platform.so', 'android.hardware.vibrator-V2-ndk.so'),
     ('vendor/etc/media_codecs.xml', 'vendor/etc/media_codecs_cape.xml', 'vendor/etc/media_codecs_cape_vendor.xml'): blob_fixup()
         .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).*\n', ''),
+    'vendor/etc/init/vendor.noth.hardware.camera-service.rc':
+        blob_fixup().regex_replace(r'\bNtCamAlgoCapacity\b', 'CameraServiceCapacity'),
     'vendor/lib64/libcamximageformatutils.so': blob_fixup()
         .replace_needed('vendor.qti.hardware.display.config-V2-ndk_platform.so', 'vendor.qti.hardware.display.config-V2-ndk.so'),
     ('vendor/lib64/libgarden.so', 'vendor/lib64/libgarden_haltests_e2e.so'): blob_fixup()
@@ -119,6 +121,13 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libbase_shim.so'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
+    (
+        'vendor/lib64/libntofflinepostproc.so',
+        'vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so',
+    ): blob_fixup().replace_needed(
+        'vendor.qti.hardware.camera.postproc@1.0.so',
+        'vendor.qti.hardware.camera.postproc@1.0-nothing.so',
+    ),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
