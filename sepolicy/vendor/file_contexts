@@ -19,3 +19,6 @@
 
 # Powerstats
 /vendor/bin/hw/android\.hardware\.power\.stats-service                                             u:object_r:hal_power_stats_default_exec:s0
+
+# Camera
+/vendor/bin/hw/vendor\.noth\.hardware\.camera-service                              u:object_r:vendor_hal_camera_default_exec:s0

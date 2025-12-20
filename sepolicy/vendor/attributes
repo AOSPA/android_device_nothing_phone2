@@ -1,0 +1,3 @@
+attribute vendor_hal_noth_camera;
+attribute vendor_hal_noth_camera_client;
+attribute vendor_hal_noth_camera_server;
