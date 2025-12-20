@@ -1,0 +1,3 @@
+hal_attribute(vendor_hal_noth_camera)
+hal_attribute_service(vendor_hal_noth_camera, vendor_hal_noth_camera_service)
+wakelock_use(vendor_hal_noth_camera_server)
