@@ -1,0 +1,17 @@
+type vendor_hal_camera_default, domain;
+type vendor_hal_camera_default_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(vendor_hal_camera_default)
+
+hal_server_domain(vendor_hal_camera_default, vendor_hal_noth_camera)
+hal_server_domain(vendor_hal_camera_default, hal_camera)
+hal_client_domain(vendor_hal_camera_default, hal_graphics_allocator)
+
+binder_use(vendor_hal_camera_default)
+binder_call(vendor_hal_camera_default, cameraserver)
+binder_call(vendor_hal_camera_default, platform_app)
+
+r_dir_file(vendor_hal_camera_default, vendor_sysfs_camera)
+r_dir_file(vendor_hal_camera_default, vendor_sysfs_graphics)
+
+get_prop(vendor_hal_camera_default, camera_config_prop)
