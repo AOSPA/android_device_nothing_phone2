@@ -272,9 +272,14 @@ vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
 vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so
 
 # Camera - to be revisited for NtCam
-#vendor/etc/camera/arc_ghz_data1.bin
-#vendor/etc/camera/arc_ghz_data2.bin
-#vendor/etc/camera/arc_ghz_data3.bin
+vendor/bin/hw/vendor.noth.hardware.camera-service
+vendor/etc/camera/arc_ghz_data1.bin
+vendor/etc/camera/arc_ghz_data2.bin
+vendor/etc/camera/arc_ghz_data3.bin
+vendor/etc/init/vendor.noth.hardware.camera-service.rc
+vendor/etc/vintf/manifest/vendor.noth.hardware.camera-service.xml
+vendor/lib64/vendor.noth.hardware.camera-service-impl.so
+vendor/lib64/vendor.noth.hardware.camera-V1-ndk_platform.so
 
 # Camera
 system_ext/etc/permissions/advancedSample_camera_extensions.xml
