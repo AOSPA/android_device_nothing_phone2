@@ -1794,6 +1794,29 @@ vendor/lib64/libqtivibratoreffect.so
 vendor/lib64/vendor.aac.hardware.richtap.vibrator-V1-ndk_platform.so
 vendor/lib64/vendor.qti.hardware.vibrator.impl.so
 
+# Vibrator (RichTap resources)
+vendor/etc/richtapresources/default/click.he
+vendor/etc/richtapresources/default/double_click.he
+vendor/etc/richtapresources/default/heavy_click.he
+vendor/etc/richtapresources/default/pop.he
+vendor/etc/richtapresources/default/texture_tick.he
+vendor/etc/richtapresources/default/thud.he
+vendor/etc/richtapresources/default/tick.he
+vendor/etc/richtapresources/strong/click.he
+vendor/etc/richtapresources/strong/double_click.he
+vendor/etc/richtapresources/strong/heavy_click.he
+vendor/etc/richtapresources/strong/pop.he
+vendor/etc/richtapresources/strong/texture_tick.he
+vendor/etc/richtapresources/strong/thud.he
+vendor/etc/richtapresources/strong/tick.he
+vendor/etc/richtapresources/weak/click.he
+vendor/etc/richtapresources/weak/double_click.he
+vendor/etc/richtapresources/weak/heavy_click.he
+vendor/etc/richtapresources/weak/pop.he
+vendor/etc/richtapresources/weak/texture_tick.he
+vendor/etc/richtapresources/weak/thud.he
+vendor/etc/richtapresources/weak/tick.he
+
 # Vibrator (firmware)
 vendor/firmware/haptic_ram.bin
 vendor/firmware/haptic_rtp.bin

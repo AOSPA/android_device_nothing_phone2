@@ -15,6 +15,7 @@
 
 # Vibrator
 /dev/aw86927_haptic                                                                                u:object_r:aac_richtap_device:s0
+/(vendor|system/vendor)/etc/richtapresources(/.*)?                                                 u:object_r:vendor_richtap_resources:s0
 
 # Powerstats
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power\.stats-service                             u:object_r:hal_power_stats_default_exec:s0
