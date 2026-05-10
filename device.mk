@@ -150,6 +150,7 @@ PRODUCT_BOOT_JARS += \
     nothing-fwk
 
 PRODUCT_PACKAGES += \
+    NothingNrEnabler \
     nothing-fwk
 
 # Overlays
