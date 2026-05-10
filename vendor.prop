@@ -18,7 +18,7 @@ ro.vendor.bluetooth.csip_qti=true
 persist.vendor.newdirac.dump=0
 persist.vendor.newdirac.enable.value=1.000000
 persist.vendor.newdirac.volume.value=0.000000
-persist.vendor.newdirac.cur.config=MUSIC
+persist.vendor.newdirac.cur.config=MOVIE
 
 # Display
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
