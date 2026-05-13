@@ -2,9 +2,6 @@
 persist.bluetooth.bqr.event_mask=0x8000000E
 persist.bluetooth.bqr.min_interval_ms=6000
 
-# Camera
-vendor.camera.aux.packagelist=org.lineageos.aperture
-
 # Display
 sys.brightness.disable_gamma_conversion=true
 
