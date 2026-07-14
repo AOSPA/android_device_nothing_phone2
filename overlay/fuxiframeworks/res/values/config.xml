@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2024 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Indicate available ColorDisplayManager.COLOR_MODE_xxx. -->
+    <integer-array name="config_availableColorModes">
+        <item>0</item> <!-- standard_native -->
+        <item>1</item> <!-- standard_P3 -->
+        <item>256</item> <!-- hal_native -->
+        <item>257</item> <!-- hal_srgb -->
+        <item>258</item> <!-- smart_MC -->
+        <item>259</item> <!-- video1 -->
+        <item>260</item> <!-- video2 -->
+        <item>261</item> <!-- video3 -->
+        <item>262</item> <!-- video4 -->
+        <item>263</item> <!-- GM1 -->
+        <item>264</item> <!-- GM2 -->
+        <item>265</item> <!-- GM3 -->
+        <item>266</item> <!-- expert_native -->
+        <item>267</item> <!-- expert_srgb -->
+        <item>268</item> <!-- expert_dcip3 -->
+        <item>269</item> <!-- expert_wcg_srgb -->
+        <item>270</item> <!-- expert_transition -->
+        <item>271</item> <!-- p3_fod -->
+        <item>272</item> <!-- expert_p3_fod -->
+        <item>273</item> <!-- Native_D65_FlatmodeOFF_100APL -->
+        <item>281</item> <!-- AI_1 -->
+        <item>282</item> <!-- AI_2 -->
+        <item>283</item> <!-- AI_3 -->
+        <item>284</item> <!-- AI_4 -->
+        <item>285</item> <!-- AI_5 -->
+        <item>286</item> <!-- AI_6 -->
+        <item>287</item> <!-- AI_7 -->
+        <item>288</item> <!-- AI_8 -->
+    </integer-array>
+
+    <!-- The following two arrays specify which color space to use for display composition when a
+         certain color mode is active.
+         Composition color spaces are defined in android.view.Display.COLOR_MODE_xxx, and color
+         modes are defined in ColorDisplayManager.COLOR_MODE_xxx and
+         ColorDisplayManager.VENDOR_COLOR_MODE_xxx.
+         The color space COLOR_MODE_DEFAULT (0) lets the system select the most appropriate
+         composition color space for currently displayed content. Other values (e.g.,
+         COLOR_MODE_SRGB) override system selection; these other color spaces must be supported by
+         the device for for display composition.
+         If a color mode does not have a corresponding color space specified in this array, the
+         currently set composition color space will not be modified.-->
+    <integer-array name="config_displayCompositionColorModes">
+        <item>0</item> <!-- standard_native -->
+        <item>1</item> <!-- standard_P3 -->
+        <item>256</item> <!-- hal_native -->
+        <item>257</item> <!-- hal_srgb -->
+        <item>258</item> <!-- smart_MC -->
+        <item>259</item> <!-- video1 -->
+        <item>260</item> <!-- video2 -->
+        <item>261</item> <!-- video3 -->
+        <item>262</item> <!-- video4 -->
+        <item>263</item> <!-- GM1 -->
+        <item>264</item> <!-- GM2 -->
+        <item>265</item> <!-- GM3 -->
+        <item>266</item> <!-- expert_native -->
+        <item>267</item> <!-- expert_srgb -->
+        <item>268</item> <!-- expert_dcip3 -->
+        <item>269</item> <!-- expert_wcg_srgb -->
+        <item>270</item> <!-- expert_transition -->
+        <item>271</item> <!-- p3_fod -->
+        <item>272</item> <!-- expert_p3_fod -->
+        <item>273</item> <!-- Native_D65_FlatmodeOFF_100APL -->
+        <item>281</item> <!-- AI_1 -->
+        <item>282</item> <!-- AI_2 -->
+        <item>283</item> <!-- AI_3 -->
+        <item>284</item> <!-- AI_4 -->
+        <item>285</item> <!-- AI_5 -->
+        <item>286</item> <!-- AI_6 -->
+        <item>287</item> <!-- AI_7 -->
+        <item>288</item> <!-- AI_8 -->
+    </integer-array>
+    <integer-array name="config_displayCompositionColorSpaces">
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+        <item>0</item> <!-- COLOR_MODE_DEFAULT -->
+    </integer-array>
+
+    <!-- Telephony qualified networks service package name to bind to by default. -->
+    <string name="config_qualified_networks_service_package">vendor.qti.iwlan</string>
+
+    <!-- IWLAN data service package name to bind to by default. If none is specified in an overlay, an
+         empty string is passed in -->
+    <string name="config_wlan_data_service_package">vendor.qti.iwlan</string>
+
+    <!-- IWLAN network service package name to bind to by default. If none is specified in an overlay, an
+         empty string is passed in -->
+    <string name="config_wlan_network_service_package">vendor.qti.iwlan</string>
+</resources>
