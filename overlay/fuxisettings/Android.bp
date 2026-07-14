@@ -1,0 +1,5 @@
+runtime_resource_overlay {
+    name: "fuxisettings",
+    sdk_version: "36",
+    vendor: true,
+}
