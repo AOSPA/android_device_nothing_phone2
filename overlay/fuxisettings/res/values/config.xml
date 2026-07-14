@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2024 Paranoid Android
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Display settings screen, Color mode options. Must be the same length and order as
+         config_color_mode_options_values below. Only the values that also appear in
+         frameworks/base/core/res/res/values/config.xml's config_availableColorModes are shown. -->
+    <string-array name="config_color_mode_options_strings" translatable="false">
+        <item>standard_native</item>
+        <item>standard_P3</item>
+        <item>hal_native</item>
+        <item>hal_srgb</item>
+        <item>smart_MC</item>
+        <item>video1</item>
+        <item>video2</item>
+        <item>video3</item>
+        <item>video4</item>
+        <item>GM1</item>
+        <item>GM2</item>
+        <item>GM3</item>
+        <item>expert_native</item>
+        <item>expert_srgb</item>
+        <item>expert_dcip3</item>
+        <item>expert_wcg_srgb</item>
+        <item>expert_transition</item>
+        <item>p3_fod</item>
+        <item>expert_p3_fod</item>
+        <item>Native_D65_FlatmodeOFF_100APL</item>
+        <item>AI_1</item>
+        <item>AI_2</item>
+        <item>AI_3</item>
+        <item>AI_4</item>
+        <item>AI_5</item>
+        <item>AI_6</item>
+        <item>AI_7</item>
+        <item>AI_8</item>
+    </string-array>
+
+    <!-- Display settings screen, Color mode options. Must be the same length and order as
+         config_color_mode_options_strings above. Only the values that also appear in
+         frameworks/base/core/res/res/values/config.xml's config_availableColorModes are shown. -->
+    <integer-array name="config_color_mode_options_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>256</item>
+        <item>257</item>
+        <item>258</item>
+        <item>259</item>
+        <item>260</item>
+        <item>261</item>
+        <item>262</item>
+        <item>263</item>
+        <item>264</item>
+        <item>265</item>
+        <item>266</item>
+        <item>267</item>
+        <item>268</item>
+        <item>269</item>
+        <item>270</item>
+        <item>271</item>
+        <item>272</item>
+        <item>273</item>
+        <item>281</item>
+        <item>282</item>
+        <item>283</item>
+        <item>284</item>
+        <item>285</item>
+        <item>286</item>
+        <item>287</item>
+        <item>288</item>
+    </integer-array>
+</resources>
