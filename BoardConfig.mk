@@ -125,6 +125,8 @@ SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # WLAN
+TARGET_WLAN_CHIP := qca6490
+
 include device/qcom/wlan/taro/BoardConfigWlan.mk
 
 # Vendor BoardConfig
