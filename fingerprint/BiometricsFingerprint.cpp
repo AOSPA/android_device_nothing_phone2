@@ -348,6 +348,8 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                              .isOk()) {
                     ALOGE("failed to invoke fingerprint onAuthenticated callback");
                 }
+                setFodHbm(false);
+                getInstance()->onFingerUp();
             }
             break;
         case FINGERPRINT_TEMPLATE_ENUMERATING:
