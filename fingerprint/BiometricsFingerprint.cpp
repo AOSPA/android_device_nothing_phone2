@@ -175,7 +175,6 @@ Return<uint64_t> BiometricsFingerprint::preEnroll() {
 Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69>& hat,
                                                     uint32_t gid, uint32_t timeoutSec) {
     const hw_auth_token_t* authToken = reinterpret_cast<const hw_auth_token_t*>(hat.data());
-    setFodHbm(true);
     return ErrorFilter(mDevice->enroll(mDevice, authToken, gid, timeoutSec));
 }
 
@@ -217,7 +216,6 @@ Return<RequestStatus> BiometricsFingerprint::setActiveGroup(uint32_t gid,
 }
 
 Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId, uint32_t gid) {
-    setFodHbm(true);
     return ErrorFilter(mDevice->authenticate(mDevice, operationId, gid));
 }
 
@@ -288,7 +286,6 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
             if (!thisPtr->mClientCallback->onError(devId, result, vendorCode).isOk()) {
                 ALOGE("failed to invoke fingerprint onError callback");
             }
-            setFodHbm(false);
             getInstance()->onFingerUp();
         } break;
         case FINGERPRINT_ACQUIRED: {
@@ -311,6 +308,9 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                                           msg->data.enroll.samples_remaining)
                          .isOk()) {
                 ALOGE("failed to invoke fingerprint onEnrollResult callback");
+            }
+            if (msg->data.enroll.samples_remaining == 0) {
+                getInstance()->onFingerUp();
             }
             break;
         case FINGERPRINT_TEMPLATE_REMOVED:
@@ -337,7 +337,6 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                              .isOk()) {
                     ALOGE("failed to invoke fingerprint onAuthenticated callback");
                 }
-                setFodHbm(false);
                 getInstance()->onFingerUp();
             } else {
                 // Not a recognized fingerprint
@@ -348,6 +347,7 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                              .isOk()) {
                     ALOGE("failed to invoke fingerprint onAuthenticated callback");
                 }
+                getInstance()->onFingerUp();
             }
             break;
         case FINGERPRINT_TEMPLATE_ENUMERATING:
@@ -370,11 +370,13 @@ Return<bool> BiometricsFingerprint::isUdfps(uint32_t /* sensorId */) {
 
 Return<void> BiometricsFingerprint::onFingerDown(uint32_t /* x */, uint32_t /* y */,
                                                  float /* minor */, float /* major */) {
+    setFodHbm(true);
     mDevice->goodixExtCmd(mDevice, 1, 0);
     return Void();
 }
 
 Return<void> BiometricsFingerprint::onFingerUp() {
+    setFodHbm(false);
     mDevice->goodixExtCmd(mDevice, 0, 0);
     return Void();
 }
