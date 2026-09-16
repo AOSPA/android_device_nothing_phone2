@@ -10,6 +10,6 @@
      <bool name="config_vibrateOnIconAnimation">true</bool>
 
     <!-- Color of the UDFPS Pressed view -->
-    <color name="config_udfpsColor">#ffffe6</color>
+    <color name="config_udfpsColor">#ffffff</color>
 
 </resources>
