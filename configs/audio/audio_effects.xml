@@ -94,6 +94,9 @@
         <!-- add for dirac support -->
     </effects>
     <postprocess>
+        <stream type="music">
+            <apply effect="dirac"/>
+        </stream>
     <!-- heaton.zhong, 2023/02/10, Remove for dirac
         <stream type="music">
             <apply effect="music_helper"/>
