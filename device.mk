@@ -54,6 +54,9 @@ DEVICE_MANIFEST_FILE += \
     vendor/qcom/opensource/audio-hal/primary-hal/configs/common/manifest_non_qmaa.xml \
     vendor/qcom/opensource/audio-hal/primary-hal/configs/common/manifest_non_qmaa_extn.xml
 
+PRODUCT_PACKAGES += \
+    ParanoidDiracEffectService
+
 $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
 
 # AVB
