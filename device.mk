@@ -50,6 +50,9 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_cape_qssi/audio_policy_configuration.xml \
     $(DEVICE_PATH)/configs/dirac/interface.json:$(TARGET_COPY_OUT_VENDOR)/etc/dirac/interface.json
 
+PRODUCT_PACKAGES += \
+    ParanoidDiracEffectService
+
 $(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
 
 # AVB
