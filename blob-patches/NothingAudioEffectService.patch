@@ -1,0 +1,1550 @@
+diff --git a/smali/com/nothing/audioeffect/AudioEffectControlService.smali b/smali/com/nothing/audioeffect/AudioEffectControlService.smali
+index 95f98d0..33c95d0 100644
+--- a/smali/com/nothing/audioeffect/AudioEffectControlService.smali
++++ b/smali/com/nothing/audioeffect/AudioEffectControlService.smali
+@@ -417,6 +417,8 @@
+ 
+     invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->effectOff()V
+ 
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->effectOff()V
++
+     .line 216
+     sget-object v0, Lcom/nothing/audioeffect/AudioEffectControlService;->TAG:Ljava/lang/String;
+ 
+@@ -657,6 +659,8 @@
+ 
+     invoke-static {p0}, Lcom/nothing/audioeffect/DiracHelper;->init(Landroid/content/Context;)V
+ 
++    invoke-static {p0}, Lcom/nothing/audioeffect/DiracHelper;->init(Landroid/content/Context;)V
++
+     .line 60
+     new-instance v0, Lcom/nothing/audioeffect/DetectSceneService;
+ 
+@@ -833,6 +837,8 @@
+ 
+     invoke-static {p1}, Lcom/nothing/audioeffect/DiracHelper;->setMode(I)V
+ 
++    invoke-static {p1}, Lcom/nothing/audioeffect/DiracHelper;->setMode(I)V
++
+     .line 182
+     sget-object v0, Lcom/nothing/audioeffect/AudioEffectControlService;->TAG:Ljava/lang/String;
+ 
+diff --git a/smali/com/nothing/audioeffect/DiracAudioEffect.smali b/smali/com/nothing/audioeffect/DiracAudioEffect.smali
+index d35d509..0a2d650 100644
+--- a/smali/com/nothing/audioeffect/DiracAudioEffect.smali
++++ b/smali/com/nothing/audioeffect/DiracAudioEffect.smali
+@@ -137,22 +137,70 @@
+ 
+ 
+ # virtual methods
++.method public release()V
++    .locals 1
++
++    .line 40
++    iget-object v0, p0, Lcom/nothing/audioeffect/DiracAudioEffect;->mEffect:Landroid/media/audiofx/AudioEffect;
++
++    if-eqz v0, :cond_0
++
++    .line 42
++    :try_start_0
++    iget-object v0, p0, Lcom/nothing/audioeffect/DiracAudioEffect;->mEffect:Landroid/media/audiofx/AudioEffect;
++
++    invoke-virtual {v0}, Landroid/media/audiofx/AudioEffect;->release()V
++    :try_end_0
++    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
++
++    goto :goto_0
++
++    .line 43
++    :catch_0
++    move-exception v0
++
++    :goto_0
++    nop
++
++    .line 45
++    :cond_0
++    return-void
++.end method
++
+ .method public setEnabled(Z)V
+     .locals 1
+ 
+     .line 24
+     iget-object v0, p0, Lcom/nothing/audioeffect/DiracAudioEffect;->mEffect:Landroid/media/audiofx/AudioEffect;
+ 
++    if-eqz v0, :cond_0
++
++    .line 26
++    :try_start_0
++    iget-object v0, p0, Lcom/nothing/audioeffect/DiracAudioEffect;->mEffect:Landroid/media/audiofx/AudioEffect;
++
+     invoke-virtual {v0, p1}, Landroid/media/audiofx/AudioEffect;->setEnabled(Z)I
++    :try_end_0
++    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+ 
+-    .line 25
++    goto :goto_0
++
++    .line 27
++    :catch_0
++    move-exception p1
++
++    :goto_0
++    nop
++
++    .line 29
++    :cond_0
+     return-void
+ .end method
+ 
+ .method public setParam([B[B)I
+     .locals 4
+ 
+-    .line 29
++    .line 33
+     :try_start_0
+     iget-object v0, p0, Lcom/nothing/audioeffect/DiracAudioEffect;->mSetParameterMethod:Ljava/lang/reflect/Method;
+ 
+@@ -184,11 +232,11 @@
+ 
+     return p1
+ 
+-    .line 30
++    .line 34
+     :catch_0
+     move-exception p1
+ 
+-    .line 31
++    .line 35
+     const/4 p1, -0x1
+ 
+     return p1
+diff --git a/smali/com/nothing/audioeffect/DiracHelper$1.smali b/smali/com/nothing/audioeffect/DiracHelper$1.smali
+index b251b23..40ab74d 100644
+--- a/smali/com/nothing/audioeffect/DiracHelper$1.smali
++++ b/smali/com/nothing/audioeffect/DiracHelper$1.smali
+@@ -18,7 +18,7 @@
+ .method constructor <init>()V
+     .locals 0
+ 
+-    .line 33
++    .line 32
+     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
+ 
+     return-void
+@@ -29,21 +29,20 @@
+ .method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+     .locals 2
+ 
+-    .line 36
++    .line 35
++    const-string p1, "android.media.VOLUME_CHANGED_ACTION"
++
+     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
+ 
+-    move-result-object p1
++    move-result-object v0
+ 
+-    .line 37
+-    const-string v0, "android.media.VOLUME_CHANGED_ACTION"
++    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+-    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+-
+-    move-result v0
++    move-result p1
+ 
+-    if-eqz v0, :cond_0
++    if-eqz p1, :cond_0
+ 
+-    .line 38
++    .line 36
+     const-string p1, "android.media.EXTRA_VOLUME_STREAM_TYPE"
+ 
+     const/4 v0, -0x1
+@@ -52,44 +51,22 @@
+ 
+     move-result p1
+ 
+-    .line 39
++    .line 37
+     const/4 v1, 0x3
+ 
+-    if-ne p1, v1, :cond_1
++    if-ne p1, v1, :cond_0
+ 
+-    .line 40
++    .line 38
+     const-string p1, "android.media.EXTRA_VOLUME_STREAM_VALUE"
+ 
+     invoke-virtual {p2, p1, v0}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+ 
+     move-result p1
+ 
+-    .line 41
++    .line 39
+     invoke-static {p1}, Lcom/nothing/audioeffect/DiracHelper;->updateVolume(I)V
+ 
+-    goto :goto_0
+-
+-    .line 43
++    .line 42
+     :cond_0
+-    const-string p2, "android.intent.action.HEADSET_PLUG"
+-
+-    invoke-virtual {p2, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+-
+-    move-result p1
+-
+-    if-eqz p1, :cond_1
+-
+-    .line 44
+-    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->updateRouting()V
+-
+-    goto :goto_1
+-
+-    .line 43
+-    :cond_1
+-    :goto_0
+-    nop
+-
+-    .line 46
+-    :goto_1
+     return-void
+ .end method
+diff --git a/smali/com/nothing/audioeffect/DiracHelper$2.smali b/smali/com/nothing/audioeffect/DiracHelper$2.smali
+new file mode 100644
+index 0000000..65e9d23
+--- /dev/null
++++ b/smali/com/nothing/audioeffect/DiracHelper$2.smali
+@@ -0,0 +1,47 @@
++.class Lcom/nothing/audioeffect/DiracHelper$2;
++.super Landroid/media/AudioDeviceCallback;
++.source "DiracHelper.java"
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingMethod;
++    value = Lcom/nothing/audioeffect/DiracHelper;->init(Landroid/content/Context;)V
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x0
++    name = null
++.end annotation
++
++
++# direct methods
++.method constructor <init>()V
++    .locals 0
++
++    .line 48
++    invoke-direct {p0}, Landroid/media/AudioDeviceCallback;-><init>()V
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public onAudioDevicesAdded([Landroid/media/AudioDeviceInfo;)V
++    .locals 0
++
++    .line 51
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->updateRouting()V
++
++    .line 52
++    return-void
++.end method
++
++.method public onAudioDevicesRemoved([Landroid/media/AudioDeviceInfo;)V
++    .locals 0
++
++    .line 56
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->updateRouting()V
++
++    .line 57
++    return-void
++.end method
+diff --git a/smali/com/nothing/audioeffect/DiracHelper.smali b/smali/com/nothing/audioeffect/DiracHelper.smali
+index 84af8d0..d3bf3eb 100644
+--- a/smali/com/nothing/audioeffect/DiracHelper.smali
++++ b/smali/com/nothing/audioeffect/DiracHelper.smali
+@@ -14,12 +14,14 @@
+ 
+ .field private static sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
++.field private static sUserEnabled:Z
++
+ 
+ # direct methods
+ .method static constructor <clinit>()V
+     .locals 1
+ 
+-    .line 18
++    .line 19
+     const-string v0, "ae737c63-f2c0-5457-909e-1e940c91b67b"
+ 
+     invoke-static {v0}, Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;
+@@ -28,60 +30,70 @@
+ 
+     sput-object v0, Lcom/nothing/audioeffect/DiracHelper;->DIRAC_UUID:Ljava/util/UUID;
+ 
+-    .line 19
++    .line 20
+     const/4 v0, 0x0
+ 
+     sput-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
+-    .line 20
++    .line 21
+     sput-object v0, Lcom/nothing/audioeffect/DiracHelper;->sContext:Landroid/content/Context;
+ 
+-    .line 21
++    .line 22
+     const/4 v0, 0x1
+ 
+     sput v0, Lcom/nothing/audioeffect/DiracHelper;->sCurrentMode:I
+ 
++    .line 23
++    sput-boolean v0, Lcom/nothing/audioeffect/DiracHelper;->sUserEnabled:Z
++
+     return-void
+ .end method
+ 
+ .method public constructor <init>()V
+     .locals 0
+ 
+-    .line 16
++    .line 17
+     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+ 
+     return-void
+ .end method
+ 
+ .method public static effectOff()V
+-    .locals 2
++    .locals 3
+ 
+-    .line 121
+-    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->ensureEffect()V
++    .line 167
++    const/4 v0, 0x0
+ 
+-    .line 122
+-    sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++    sput-boolean v0, Lcom/nothing/audioeffect/DiracHelper;->sUserEnabled:Z
+ 
+-    if-nez v0, :cond_0
++    .line 168
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    if-nez v1, :cond_0
+ 
+     return-void
+ 
+-    .line 123
++    .line 169
+     :cond_0
+-    const-string v0, "DiracHelper"
++    const-string v1, "DiracHelper"
+ 
+-    const-string v1, "effectOff"
++    const-string v2, "effectOff"
+ 
+-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 170
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
+-    .line 124
++    invoke-virtual {v1, v0}, Lcom/nothing/audioeffect/DiracAudioEffect;->setEnabled(Z)V
++
++    .line 171
+     const/4 v0, 0x6
+ 
+     const/4 v1, 0x0
+ 
+     invoke-static {v0, v1}, Lcom/nothing/audioeffect/DiracHelper;->setParam(IF)V
+ 
+-    .line 125
++    .line 172
+     return-void
+ .end method
+ 
+@@ -92,7 +104,7 @@
+ 
+     monitor-enter v0
+ 
+-    .line 56
++    .line 66
+     :try_start_0
+     sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+     :try_end_0
+@@ -104,7 +116,7 @@
+ 
+     return-void
+ 
+-    .line 58
++    .line 68
+     :cond_0
+     :try_start_1
+     new-instance v1, Lcom/nothing/audioeffect/DiracAudioEffect;
+@@ -117,43 +129,32 @@
+ 
+     sput-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
+-    .line 59
+-    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+-
+-    const/4 v2, 0x1
+-
+-    invoke-virtual {v1, v2}, Lcom/nothing/audioeffect/DiracAudioEffect;->setEnabled(Z)V
+-
+-    .line 60
+-    const/4 v1, 0x6
+-
+-    const/high16 v2, 0x3f800000    # 1.0f
+-
+-    invoke-static {v1, v2}, Lcom/nothing/audioeffect/DiracHelper;->setParam(IF)V
++    .line 69
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->updateRouting()V
+ 
+-    .line 61
++    .line 70
+     const-string v1, "MUSIC"
+ 
+     invoke-static {v1}, Lcom/nothing/audioeffect/DiracHelper;->setConfig(Ljava/lang/String;)V
+ 
+-    .line 62
++    .line 71
+     const-string v1, "DiracHelper"
+ 
+-    const-string v2, "Dirac AudioEffect created and enabled on session 0"
++    const-string v2, "Dirac AudioEffect created on global session 0"
+ 
+     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+     :try_end_1
+     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+     .catchall {:try_start_1 .. :try_end_1} :catchall_0
+ 
+-    .line 66
++    .line 75
+     goto :goto_0
+ 
+-    .line 63
++    .line 72
+     :catch_0
+     move-exception v1
+ 
+-    .line 64
++    .line 73
+     :try_start_2
+     const-string v2, "DiracHelper"
+ 
+@@ -181,20 +182,20 @@
+ 
+     invoke-static {v2, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    .line 65
++    .line 74
+     const/4 v1, 0x0
+ 
+     sput-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+     :try_end_2
+     .catchall {:try_start_2 .. :try_end_2} :catchall_0
+ 
+-    .line 67
++    .line 76
+     :goto_0
+     monitor-exit v0
+ 
+     return-void
+ 
+-    .line 55
++    .line 65
+     :catchall_0
+     move-exception v1
+ 
+@@ -209,47 +210,34 @@
+ .method public static init(Landroid/content/Context;)V
+     .locals 2
+ 
+-    .line 24
++    .line 26
+     sput-object p0, Lcom/nothing/audioeffect/DiracHelper;->sContext:Landroid/content/Context;
+ 
+-    .line 25
++    .line 27
+     const-string v0, "DiracHelper"
+ 
+-    const-string v1, "Initializing DiracHelper on AOSP"
++    const-string v1, "Initializing DiracHelper for Phone (2) speaker tuning"
+ 
+     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    .line 26
++    .line 28
+     invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->ensureEffect()V
+ 
+-    .line 28
++    .line 31
+     new-instance v0, Landroid/content/IntentFilter;
+ 
+-    invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
+-
+-    .line 29
+     const-string v1, "android.media.VOLUME_CHANGED_ACTION"
+ 
+-    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+-
+-    .line 30
+-    const-string v1, "android.media.AUDIO_BECOMING_NOISY"
++    invoke-direct {v0, v1}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
+ 
+-    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+-
+-    .line 31
+-    const-string v1, "android.intent.action.HEADSET_PLUG"
+-
+-    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+-
+-    .line 33
++    .line 32
+     new-instance v1, Lcom/nothing/audioeffect/DiracHelper$1;
+ 
+     invoke-direct {v1}, Lcom/nothing/audioeffect/DiracHelper$1;-><init>()V
+ 
+     invoke-virtual {p0, v1, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+ 
+-    .line 49
++    .line 46
+     const-string v0, "audio"
+ 
+     invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+@@ -258,10 +246,22 @@
+ 
+     check-cast p0, Landroid/media/AudioManager;
+ 
+-    .line 50
++    .line 47
+     if-eqz p0, :cond_0
+ 
+-    .line 51
++    .line 48
++    new-instance v0, Lcom/nothing/audioeffect/DiracHelper$2;
++
++    invoke-direct {v0}, Lcom/nothing/audioeffect/DiracHelper$2;-><init>()V
++
++    const/4 v1, 0x0
++
++    invoke-virtual {p0, v0, v1}, Landroid/media/AudioManager;->registerAudioDeviceCallback(Landroid/media/AudioDeviceCallback;Landroid/os/Handler;)V
++
++    .line 60
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->updateRouting()V
++
++    .line 61
+     const/4 v0, 0x3
+ 
+     invoke-virtual {p0, v0}, Landroid/media/AudioManager;->getStreamVolume(I)I
+@@ -270,35 +270,194 @@
+ 
+     invoke-static {p0}, Lcom/nothing/audioeffect/DiracHelper;->updateVolume(I)V
+ 
+-    .line 53
++    .line 63
+     :cond_0
+     return-void
+ .end method
+ 
+-.method private static setConfig(Ljava/lang/String;)V
++.method private static isSpeakerActive(Landroid/media/AudioManager;)Z
++    .locals 5
++
++    .line 114
++    const/4 v0, 0x0
++
++    if-nez p0, :cond_0
++
++    return v0
++
++    .line 115
++    :cond_0
++    const/4 v1, 0x2
++
++    invoke-virtual {p0, v1}, Landroid/media/AudioManager;->getDevices(I)[Landroid/media/AudioDeviceInfo;
++
++    move-result-object p0
++
++    .line 116
++    array-length v1, p0
++
++    const/4 v2, 0x0
++
++    :goto_0
++    if-ge v2, v1, :cond_3
++
++    aget-object v3, p0, v2
++
++    .line 117
++    invoke-virtual {v3}, Landroid/media/AudioDeviceInfo;->getType()I
++
++    move-result v3
++
++    .line 118
++    const/4 v4, 0x3
++
++    if-eq v3, v4, :cond_2
++
++    const/4 v4, 0x4
++
++    if-eq v3, v4, :cond_2
++
++    const/16 v4, 0x8
++
++    if-eq v3, v4, :cond_2
++
++    const/4 v4, 0x7
++
++    if-eq v3, v4, :cond_2
++
++    const/16 v4, 0x1a
++
++    if-eq v3, v4, :cond_2
++
++    const/16 v4, 0x1b
++
++    if-eq v3, v4, :cond_2
++
++    const/16 v4, 0xb
++
++    if-eq v3, v4, :cond_2
++
++    const/16 v4, 0x16
++
++    if-ne v3, v4, :cond_1
++
++    goto :goto_1
++
++    .line 116
++    :cond_1
++    add-int/lit8 v2, v2, 0x1
++
++    goto :goto_0
++
++    .line 126
++    :cond_2
++    :goto_1
++    return v0
++
++    .line 129
++    :cond_3
++    const/4 p0, 0x1
++
++    return p0
++.end method
++
++.method private static declared-synchronized recreateOnDeadObject()V
+     .locals 2
+ 
+-    .line 140
+-    sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++    const-class v0, Lcom/nothing/audioeffect/DiracHelper;
+ 
+-    if-nez v0, :cond_0
++    monitor-enter v0
++
++    .line 213
++    :try_start_0
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    if-eqz v1, :cond_0
++
++    .line 214
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    invoke-virtual {v1}, Lcom/nothing/audioeffect/DiracAudioEffect;->release()V
++
++    .line 215
++    const/4 v1, 0x0
++
++    sput-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    .line 217
++    :cond_0
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->ensureEffect()V
++    :try_end_0
++    .catchall {:try_start_0 .. :try_end_0} :catchall_0
++
++    .line 218
++    monitor-exit v0
+ 
+     return-void
+ 
+-    .line 142
++    .line 212
++    :catchall_0
++    move-exception v1
++
++    :try_start_1
++    monitor-exit v0
++    :try_end_1
++    .catchall {:try_start_1 .. :try_end_1} :catchall_0
++
++    throw v1
++.end method
++
++.method private static setConfig(Ljava/lang/String;)V
++    .locals 3
++
++    .line 194
++    const-string v0, "DiracHelper"
++
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    if-nez v1, :cond_0
++
++    return-void
++
++    .line 197
+     :cond_0
++    const/4 v1, 0x4
++
+     :try_start_0
+-    new-instance v0, Ljava/lang/StringBuilder;
++    invoke-static {v1}, Ljava/nio/ByteBuffer;->allocate(I)Ljava/nio/ByteBuffer;
+ 
+-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++    move-result-object v1
+ 
+-    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-static {}, Ljava/nio/ByteOrder;->nativeOrder()Ljava/nio/ByteOrder;
++
++    move-result-object v2
++
++    invoke-virtual {v1, v2}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
++
++    move-result-object v1
++
++    const v2, 0x10001
++
++    invoke-virtual {v1, v2}, Ljava/nio/ByteBuffer;->putInt(I)Ljava/nio/ByteBuffer;
++
++    move-result-object v1
++
++    invoke-virtual {v1}, Ljava/nio/ByteBuffer;->array()[B
++
++    move-result-object v1
++
++    .line 198
++    new-instance v2, Ljava/lang/StringBuilder;
++
++    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v2, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+     move-result-object p0
+ 
+-    const-string v0, "\u0000"
++    const-string v2, "\u0000"
+ 
+-    invoke-virtual {p0, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+     move-result-object p0
+ 
+@@ -306,75 +465,77 @@
+ 
+     move-result-object p0
+ 
+-    sget-object v0, Ljava/nio/charset/StandardCharsets;->US_ASCII:Ljava/nio/charset/Charset;
++    sget-object v2, Ljava/nio/charset/StandardCharsets;->US_ASCII:Ljava/nio/charset/Charset;
+ 
+-    invoke-virtual {p0, v0}, Ljava/lang/String;->getBytes(Ljava/nio/charset/Charset;)[B
++    invoke-virtual {p0, v2}, Ljava/lang/String;->getBytes(Ljava/nio/charset/Charset;)[B
+ 
+     move-result-object p0
+ 
+-    .line 143
+-    array-length v0, p0
++    .line 199
++    sget-object v2, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
+-    add-int/lit8 v0, v0, 0x4
++    invoke-virtual {v2, v1, p0}, Lcom/nothing/audioeffect/DiracAudioEffect;->setParam([B[B)I
+ 
+-    invoke-static {v0}, Ljava/nio/ByteBuffer;->allocate(I)Ljava/nio/ByteBuffer;
++    move-result p0
+ 
+-    move-result-object v0
++    .line 200
++    if-eqz p0, :cond_1
+ 
+-    invoke-static {}, Ljava/nio/ByteOrder;->nativeOrder()Ljava/nio/ByteOrder;
++    .line 201
++    new-instance v1, Ljava/lang/StringBuilder;
+ 
+-    move-result-object v1
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    invoke-virtual {v0, v1}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
++    const-string v2, "setConfig returned "
+ 
+-    move-result-object v0
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    .line 144
+-    const v1, 0x10001
++    move-result-object v1
+ 
+-    invoke-virtual {v0, v1}, Ljava/nio/ByteBuffer;->putInt(I)Ljava/nio/ByteBuffer;
++    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    .line 145
+-    invoke-virtual {v0, p0}, Ljava/nio/ByteBuffer;->put([B)Ljava/nio/ByteBuffer;
++    move-result-object v1
+ 
+-    .line 146
+-    sget-object p0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+ 
+-    invoke-virtual {v0}, Ljava/nio/ByteBuffer;->array()[B
++    move-result-object v1
+ 
+-    move-result-object v0
++    invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    const/4 v1, 0x0
++    .line 202
++    const/4 v1, -0x7
+ 
+-    new-array v1, v1, [B
++    if-ne p0, v1, :cond_1
+ 
+-    invoke-virtual {p0, v0, v1}, Lcom/nothing/audioeffect/DiracAudioEffect;->setParam([B[B)I
++    .line 203
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->recreateOnDeadObject()V
+     :try_end_0
+     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+ 
+-    .line 149
++    .line 209
++    :cond_1
+     goto :goto_0
+ 
+-    .line 147
++    .line 206
+     :catch_0
+     move-exception p0
+ 
+-    .line 148
++    .line 207
+     invoke-virtual {p0}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+ 
+     move-result-object p0
+ 
+-    new-instance v0, Ljava/lang/StringBuilder;
++    new-instance v1, Ljava/lang/StringBuilder;
+ 
+-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    const-string v1, "setConfig error: "
++    const-string v2, "setConfig error: "
+ 
+-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    move-result-object v0
++    move-result-object v1
+ 
+-    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+     move-result-object p0
+ 
+@@ -382,11 +543,12 @@
+ 
+     move-result-object p0
+ 
+-    const-string v0, "DiracHelper"
+-
+     invoke-static {v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    .line 150
++    .line 208
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->recreateOnDeadObject()V
++
++    .line 210
+     :goto_0
+     return-void
+ .end method
+@@ -394,24 +556,29 @@
+ .method public static setMode(I)V
+     .locals 2
+ 
+-    .line 106
++    .line 151
+     sput p0, Lcom/nothing/audioeffect/DiracHelper;->sCurrentMode:I
+ 
+-    .line 107
++    .line 152
++    const/4 v0, 0x1
++
++    sput-boolean v0, Lcom/nothing/audioeffect/DiracHelper;->sUserEnabled:Z
++
++    .line 153
+     invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->ensureEffect()V
+ 
+-    .line 108
++    .line 154
+     sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
+     if-nez v0, :cond_0
+ 
+     return-void
+ 
+-    .line 110
++    .line 156
+     :cond_0
+     nop
+ 
+-    .line 111
++    .line 157
+     const/4 v0, 0x2
+ 
+     if-ne p0, v0, :cond_1
+@@ -420,7 +587,7 @@
+ 
+     goto :goto_0
+ 
+-    .line 112
++    .line 158
+     :cond_1
+     const/4 v0, 0x3
+ 
+@@ -430,7 +597,7 @@
+ 
+     goto :goto_0
+ 
+-    .line 113
++    .line 159
+     :cond_2
+     const/4 v0, 0x4
+ 
+@@ -443,7 +610,7 @@
+     :cond_3
+     const-string p0, "MUSIC"
+ 
+-    .line 115
++    .line 161
+     :goto_0
+     new-instance v0, Ljava/lang/StringBuilder;
+ 
+@@ -467,76 +634,134 @@
+ 
+     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    .line 116
++    .line 162
+     invoke-static {p0}, Lcom/nothing/audioeffect/DiracHelper;->setConfig(Ljava/lang/String;)V
+ 
+-    .line 117
+-    const/4 p0, 0x6
+-
+-    const/high16 v0, 0x3f800000    # 1.0f
+-
+-    invoke-static {p0, v0}, Lcom/nothing/audioeffect/DiracHelper;->setParam(IF)V
++    .line 163
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->updateRouting()V
+ 
+-    .line 118
++    .line 164
+     return-void
+ .end method
+ 
+ .method private static setParam(IF)V
+-    .locals 2
++    .locals 4
+ 
+-    .line 128
+-    sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++    .line 175
++    const-string v0, "DiracHelper"
+ 
+-    if-nez v0, :cond_0
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    if-nez v1, :cond_0
+ 
+     return-void
+ 
+-    .line 130
++    .line 178
+     :cond_0
+-    const/16 v0, 0x8
++    const/4 v1, 0x4
+ 
+     :try_start_0
+-    invoke-static {v0}, Ljava/nio/ByteBuffer;->allocate(I)Ljava/nio/ByteBuffer;
++    invoke-static {v1}, Ljava/nio/ByteBuffer;->allocate(I)Ljava/nio/ByteBuffer;
+ 
+-    move-result-object v0
++    move-result-object v2
+ 
+     invoke-static {}, Ljava/nio/ByteOrder;->nativeOrder()Ljava/nio/ByteOrder;
+ 
++    move-result-object v3
++
++    invoke-virtual {v2, v3}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
++
++    move-result-object v2
++
++    invoke-virtual {v2, p0}, Ljava/nio/ByteBuffer;->putInt(I)Ljava/nio/ByteBuffer;
++
++    move-result-object v2
++
++    invoke-virtual {v2}, Ljava/nio/ByteBuffer;->array()[B
++
++    move-result-object v2
++
++    .line 179
++    invoke-static {v1}, Ljava/nio/ByteBuffer;->allocate(I)Ljava/nio/ByteBuffer;
++
+     move-result-object v1
+ 
+-    invoke-virtual {v0, v1}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
++    invoke-static {}, Ljava/nio/ByteOrder;->nativeOrder()Ljava/nio/ByteOrder;
+ 
+-    move-result-object v0
++    move-result-object v3
+ 
+-    .line 131
+-    invoke-virtual {v0, p0}, Ljava/nio/ByteBuffer;->putInt(I)Ljava/nio/ByteBuffer;
++    invoke-virtual {v1, v3}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
+ 
+-    .line 132
+-    invoke-virtual {v0, p1}, Ljava/nio/ByteBuffer;->putFloat(F)Ljava/nio/ByteBuffer;
++    move-result-object v1
+ 
+-    .line 133
+-    sget-object p0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++    invoke-virtual {v1, p1}, Ljava/nio/ByteBuffer;->putFloat(F)Ljava/nio/ByteBuffer;
++
++    move-result-object p1
+ 
+-    invoke-virtual {v0}, Ljava/nio/ByteBuffer;->array()[B
++    invoke-virtual {p1}, Ljava/nio/ByteBuffer;->array()[B
+ 
+     move-result-object p1
+ 
+-    const/4 v0, 0x0
++    .line 180
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    invoke-virtual {v1, v2, p1}, Lcom/nothing/audioeffect/DiracAudioEffect;->setParam([B[B)I
++
++    move-result p1
++
++    .line 181
++    if-eqz p1, :cond_1
++
++    .line 182
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    const-string v2, "setParam id="
++
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v1
++
++    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    const-string v1, " returned "
++
++    invoke-virtual {p0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    invoke-virtual {p0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    invoke-virtual {p0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p0
++
++    invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    new-array v0, v0, [B
++    .line 183
++    const/4 p0, -0x7
+ 
+-    invoke-virtual {p0, p1, v0}, Lcom/nothing/audioeffect/DiracAudioEffect;->setParam([B[B)I
++    if-ne p1, p0, :cond_1
++
++    .line 184
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->recreateOnDeadObject()V
+     :try_end_0
+     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+ 
+-    .line 136
++    .line 190
++    :cond_1
+     goto :goto_0
+ 
+-    .line 134
++    .line 187
+     :catch_0
+     move-exception p0
+ 
+-    .line 135
++    .line 188
+     invoke-virtual {p0}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+ 
+     move-result-object p0
+@@ -545,9 +770,9 @@
+ 
+     invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    const-string v0, "setParam error: "
++    const-string v1, "setParam error: "
+ 
+-    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+     move-result-object p1
+ 
+@@ -559,34 +784,39 @@
+ 
+     move-result-object p0
+ 
+-    const-string p1, "DiracHelper"
++    invoke-static {v0, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    invoke-static {p1, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++    .line 189
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->recreateOnDeadObject()V
+ 
+-    .line 137
++    .line 191
+     :goto_0
+     return-void
+ .end method
+ 
+ .method public static updateRouting()V
+-    .locals 3
+-
+-    .line 95
+-    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->ensureEffect()V
+-
+-    .line 96
+-    sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+-
+-    if-eqz v0, :cond_4
++    .locals 5
+ 
++    .line 133
+     sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sContext:Landroid/content/Context;
+ 
+     if-nez v0, :cond_0
+ 
+-    goto :goto_2
++    return-void
+ 
+-    .line 97
++    .line 134
+     :cond_0
++    invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->ensureEffect()V
++
++    .line 135
++    sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
++
++    if-nez v0, :cond_1
++
++    return-void
++
++    .line 137
++    :cond_1
+     sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sContext:Landroid/content/Context;
+ 
+     const-string v1, "audio"
+@@ -597,45 +827,48 @@
+ 
+     check-cast v0, Landroid/media/AudioManager;
+ 
+-    .line 98
+-    if-nez v0, :cond_1
+-
+-    return-void
+-
+-    .line 100
+-    :cond_1
+-    invoke-virtual {v0}, Landroid/media/AudioManager;->isWiredHeadsetOn()Z
++    .line 138
++    invoke-static {v0}, Lcom/nothing/audioeffect/DiracHelper;->isSpeakerActive(Landroid/media/AudioManager;)Z
+ 
+     move-result v1
+ 
+-    if-nez v1, :cond_2
++    .line 139
++    if-eqz v1, :cond_2
+ 
+-    invoke-virtual {v0}, Landroid/media/AudioManager;->isBluetoothA2dpOn()Z
++    sget-boolean v2, Lcom/nothing/audioeffect/DiracHelper;->sUserEnabled:Z
+ 
+-    move-result v0
++    if-eqz v2, :cond_2
+ 
+-    if-nez v0, :cond_2
+-
+-    const/4 v0, 0x1
++    const/4 v2, 0x1
+ 
+     goto :goto_0
+ 
+     :cond_2
+-    const/4 v0, 0x0
++    const/4 v2, 0x0
+ 
+-    .line 101
++    .line 141
+     :goto_0
+-    new-instance v1, Ljava/lang/StringBuilder;
++    new-instance v3, Ljava/lang/StringBuilder;
+ 
+-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    const-string v2, "updateRouting isSpeaker="
++    const-string v4, "updateRouting: isSpeaker="
+ 
+-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v3
++
++    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
++
++    move-result-object v1
++
++    const-string v3, ", shouldEnable="
++
++    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+     move-result-object v1
+ 
+-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+ 
+     move-result-object v1
+ 
+@@ -643,58 +876,73 @@
+ 
+     move-result-object v1
+ 
+-    const-string v2, "DiracHelper"
++    const-string v3, "DiracHelper"
+ 
+-    invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++    invoke-static {v3, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
++
++    .line 142
++    sget-object v1, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
+-    .line 102
+-    if-eqz v0, :cond_3
++    invoke-virtual {v1, v2}, Lcom/nothing/audioeffect/DiracAudioEffect;->setEnabled(Z)V
+ 
+-    const/high16 v0, 0x3f800000    # 1.0f
++    .line 143
++    if-eqz v2, :cond_3
++
++    const/high16 v1, 0x3f800000    # 1.0f
+ 
+     goto :goto_1
+ 
+     :cond_3
+-    const/4 v0, 0x0
++    const/4 v1, 0x0
+ 
+     :goto_1
+-    const/4 v1, 0x6
++    const/4 v3, 0x6
+ 
+-    invoke-static {v1, v0}, Lcom/nothing/audioeffect/DiracHelper;->setParam(IF)V
++    invoke-static {v3, v1}, Lcom/nothing/audioeffect/DiracHelper;->setParam(IF)V
+ 
+-    .line 103
+-    return-void
++    .line 145
++    if-eqz v2, :cond_4
+ 
+-    .line 96
++    if-eqz v0, :cond_4
++
++    .line 146
++    const/4 v1, 0x3
++
++    invoke-virtual {v0, v1}, Landroid/media/AudioManager;->getStreamVolume(I)I
++
++    move-result v0
++
++    invoke-static {v0}, Lcom/nothing/audioeffect/DiracHelper;->updateVolume(I)V
++
++    .line 148
+     :cond_4
+-    :goto_2
+     return-void
+ .end method
+ 
+ .method public static updateVolume(I)V
+-    .locals 4
++    .locals 5
+ 
+-    .line 70
+-    if-gez p0, :cond_0
++    .line 79
++    if-ltz p0, :cond_a
+ 
+-    return-void
++    sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sContext:Landroid/content/Context;
+ 
+-    .line 71
++    if-nez v0, :cond_0
++
++    goto/16 :goto_3
++
++    .line 80
+     :cond_0
+     invoke-static {}, Lcom/nothing/audioeffect/DiracHelper;->ensureEffect()V
+ 
+-    .line 72
++    .line 81
+     sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sDiracEffect:Lcom/nothing/audioeffect/DiracAudioEffect;
+ 
+-    if-eqz v0, :cond_6
+-
+-    sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sContext:Landroid/content/Context;
+-
+     if-nez v0, :cond_1
+ 
+-    goto :goto_1
++    return-void
+ 
+-    .line 74
++    .line 83
+     :cond_1
+     sget-object v0, Lcom/nothing/audioeffect/DiracHelper;->sContext:Landroid/content/Context;
+ 
+@@ -706,99 +954,140 @@
+ 
+     check-cast v0, Landroid/media/AudioManager;
+ 
+-    .line 75
++    .line 84
+     if-nez v0, :cond_2
+ 
+     return-void
+ 
+-    .line 77
++    .line 87
+     :cond_2
++    invoke-static {v0}, Lcom/nothing/audioeffect/DiracHelper;->isSpeakerActive(Landroid/media/AudioManager;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_3
++
++    .line 88
++    return-void
++
++    .line 91
++    :cond_3
+     const/4 v1, 0x3
+ 
+     invoke-virtual {v0, v1}, Landroid/media/AudioManager;->getStreamMaxVolume(I)I
+ 
+     move-result v0
+ 
+-    .line 78
++    .line 92
++    if-gtz v0, :cond_4
++
++    const/16 v0, 0x1e
++
++    .line 93
++    :cond_4
+     nop
+ 
+-    .line 81
+-    const/16 v1, 0xb
++    .line 96
++    const/high16 v1, -0x40800000    # -1.0f
+ 
+-    if-le p0, v1, :cond_3
++    const/high16 v2, 0x3f800000    # 1.0f
+ 
+-    .line 82
+-    add-int/lit8 v1, p0, -0xb
++    if-lt p0, v0, :cond_5
+ 
+-    int-to-float v1, v1
++    .line 97
++    const/high16 v3, 0x3f800000    # 1.0f
+ 
+-    add-int/lit8 v2, v0, -0xb
++    goto :goto_0
+ 
+-    int-to-float v2, v2
++    .line 98
++    :cond_5
++    if-gtz p0, :cond_6
+ 
+-    div-float/2addr v1, v2
++    .line 99
++    const/high16 v3, -0x40800000    # -1.0f
+ 
+     goto :goto_0
+ 
+-    .line 84
+-    :cond_3
+-    add-int/lit8 v2, p0, -0xb
++    .line 100
++    :cond_6
++    const/16 v3, 0x12
+ 
+-    int-to-float v2, v2
++    if-le p0, v3, :cond_7
+ 
+-    int-to-float v1, v1
++    .line 101
++    add-int/lit8 v3, p0, -0x12
+ 
+-    div-float v1, v2, v1
++    int-to-float v3, v3
+ 
+-    .line 87
+-    :goto_0
+-    const/high16 v2, -0x40800000    # -1.0f
++    add-int/lit8 v4, v0, -0x12
+ 
+-    cmpg-float v3, v1, v2
++    int-to-float v4, v4
+ 
+-    if-gez v3, :cond_4
++    div-float/2addr v3, v4
+ 
+-    const/high16 v1, -0x40800000    # -1.0f
++    goto :goto_0
+ 
+-    .line 88
+-    :cond_4
+-    const/high16 v2, 0x3f800000    # 1.0f
++    .line 103
++    :cond_7
++    add-int/lit8 v4, p0, -0x12
++
++    int-to-float v4, v4
++
++    int-to-float v3, v3
++
++    div-float v3, v4, v3
++
++    .line 106
++    :goto_0
++    cmpg-float v4, v3, v1
++
++    if-gez v4, :cond_8
+ 
++    goto :goto_1
++
++    :cond_8
++    move v1, v3
++
++    .line 107
++    :goto_1
+     cmpl-float v3, v1, v2
+ 
+-    if-lez v3, :cond_5
++    if-lez v3, :cond_9
+ 
+-    const/high16 v1, 0x3f800000    # 1.0f
++    goto :goto_2
+ 
+-    .line 90
+-    :cond_5
+-    new-instance v2, Ljava/lang/StringBuilder;
++    :cond_9
++    move v2, v1
+ 
+-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
++    .line 109
++    :goto_2
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+ 
+     const-string v3, "Setting Dirac volume norm="
+ 
+-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    move-result-object v2
++    move-result-object v1
+ 
+-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
+ 
+-    move-result-object v2
++    move-result-object v1
+ 
+     const-string v3, " (vol="
+ 
+-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    move-result-object v2
++    move-result-object v1
+ 
+-    invoke-virtual {v2, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+     move-result-object p0
+ 
+-    const-string v2, "/"
++    const-string v1, "/"
+ 
+-    invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++    invoke-virtual {p0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+     move-result-object p0
+ 
+@@ -820,16 +1109,16 @@
+ 
+     invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    .line 91
++    .line 110
+     const/4 p0, 0x5
+ 
+-    invoke-static {p0, v1}, Lcom/nothing/audioeffect/DiracHelper;->setParam(IF)V
++    invoke-static {p0, v2}, Lcom/nothing/audioeffect/DiracHelper;->setParam(IF)V
+ 
+-    .line 92
++    .line 111
+     return-void
+ 
+-    .line 72
+-    :cond_6
+-    :goto_1
++    .line 79
++    :cond_a
++    :goto_3
+     return-void
+ .end method
