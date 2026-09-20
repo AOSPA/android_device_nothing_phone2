@@ -1,0 +1,13 @@
+//
+// Copyright (C) 2026 Paranoid Android
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "ParanoidDiracEffectService",
+    srcs: ["src/**/*.kt"],
+    certificate: "platform",
+    platform_apis: true,
+    privileged: true,
+}
