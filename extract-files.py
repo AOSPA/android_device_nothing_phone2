@@ -119,6 +119,8 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libbase_shim.so'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
+    'system/priv-app/NothingAudioEffectService/NothingAudioEffectService.apk': blob_fixup()
+        .apktool_patch('blob-patches/NothingAudioEffectService.patch'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
