@@ -950,8 +950,6 @@ vendor/lib64/libdiagjni.so
 vendor/lib64/vendor.qti.diaghal@1.0.so;MODULE_SUFFIX=_vendor
 
 # Dirac
-system/etc/sysconfig/preinstalled-packages-audioeffect.xml
-system/priv-app/NothingAudioEffectService/NothingAudioEffectService.apk
 vendor/etc/dirac/dirac_resource.dar
 vendor/lib64/libdirac.so
 vendor/lib64/soundfx/libdiraceffect_NT.so
