@@ -1,0 +1,20 @@
+type sltntc_exec, exec_type, system_file_type, file_type;
+init_daemon_domain(sltntc)
+
+type sltntc_service, system_api_service, service_manager_type;
+add_service(sltntc, sltntc_service)
+
+allow sltntc sltntc_service:service_manager find;
+binder_call(sltntc, servicemanager)
+
+allow sltntc sltntc_exec:file { rx_file_perms entrypoint };
+allow init sltntc:process transition;
+
+# Health HAL client (communicates with health service)
+hal_client_domain(sltntc, hal_health)
+
+# Allow reading thermal zones
+r_dir_file(sltntc, sysfs_thermal)
+
+# Allow writing computed shell temperatures to /proc/shell-temp
+allow sltntc proc_simulated_temp:file rw_file_perms;
