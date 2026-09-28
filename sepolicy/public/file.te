@@ -1,2 +1,5 @@
 # RichTap HE resources
 type vendor_richtap_resources, file_type;
+
+# Thermal
+type proc_simulated_temp, fs_type, proc_type;

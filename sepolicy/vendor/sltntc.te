@@ -1,0 +1,2 @@
+# Allow sltntc to read charging status
+r_dir_file(sltntc, vendor_sysfs_usb_supply)

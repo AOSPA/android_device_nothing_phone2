@@ -1737,6 +1737,10 @@ vendor/bin/tftp_server
 vendor/etc/init/vendor.qti.tftp.rc
 
 # Thermal Engine
+system_ext/bin/sltntc
+system_ext/etc/init/sltntc.rc
+system_ext/etc/sltntc/sltntc.conf
+system_ext/etc/sltntc/sltntc_SM8475.conf
 vendor/bin/thermal-engine-v2
 vendor/etc/init/init_thermal-engine-v2.rc
 vendor/lib64/libthermalclient.so
